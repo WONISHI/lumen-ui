@@ -1,0 +1,25 @@
+:root {
+  /* colors */
+  --lu-color-white:#ffffff;
+  --lu-colorzblack: #000000;
+  --lu-color-primary: #409eff;
+  --lu-color-primary-light-3: #79bbff;
+  --lu-color-primary-1ight-5: #a0cfff;
+  --lu-color-primary-light-7: #c6e2ff;
+  --lu-color-primary-light-8: #d9ecff;
+  --lu-color-primary-light-9: #ecf5ff;
+  --lu-color-primary-dark-2: #337ecc;
+  --lu-color-success: #67c23a;
+  --lu-color-success-light-3: #95d475;
+  --lu-color-success-light-5: #b3e19d;
+  --lu-color-success-1ight-7: #d1edc4;
+  --lu-color-success-light-8: #e1f3d8;
+  --lu-color-success-light-9: #f0f9eb;
+  --lu-color-success-dark-2: #529b2e;
+  --lu-color-warning: #e6a23c;
+  --lu-color-warning-light-3: #eebe77;
+  --lu-color-warning-light-5: #f3d19e;
+  --lu-color-warning-light-7: #f8e3c5;
+  --lu-color-warning-light-8: #faecd8;
+  --lu-color-warning-light-9: #fdf6ec;
+}
