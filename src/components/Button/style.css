@@ -82,3 +82,20 @@
     border-color: var(--lu-button-disabled-border-color);
   }
 }
+@each $val in primary,success,warning,info,danger {
+    .lu-button--$(val){
+        --lu-button-text-color: var(--lu-color-white);
+        --lu-button-bg-color: var(--lu-color-$(val));
+        --lu-button-border-color: var(--lu-color-$(val));
+        --lu-button-outline-color: var(--lu-color-$(val)-light-5);
+        --lu-button-active-color: var(--lu-color-$(val)-dark-2);
+        --lu-button-hover-text-color: var(--lu-color-white);
+        --lu-button-hover-bg-color: var(--lu-color-$(val)-light-3);
+        --lu-button-hover-border-color: var(--lu-color-$(val)-light-3);
+        --lu-button-active-bg-color: var(--lu-color-$(val)-dark-2);
+        --lu-button-active-border-color: var(--lu-color-$(val)-dark-2);
+        --lu-button-disabled-text-color: var(--lu-color-white);
+        --lu-button-disabled-bg-color: var(--lu-color-$(val)-light-5);
+        --lu-button-disabled-border-color: var(--lu-color-$(val)-light-5);
+    }
+}

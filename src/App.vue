@@ -4,8 +4,14 @@ import Button from "./components/Button/Button.vue";
 
 <template>
   <header>
-    1111
-    <Button type="primary">111</Button>
+    <h3>Button</h3>
+    <Button type="primary">primary</Button>
+    <Button type="success">success</Button>
+    <Button type="warning">warning</Button>
+    <Button type="info">info</Button>
+    <Button type="danger">danger</Button>
+    <Button plain>plain</Button>
+    <Button circle>circle</Button>
   </header>
 </template>
 
