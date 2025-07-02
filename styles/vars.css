@@ -2,13 +2,31 @@
   /* colors */
   --lu-color-white: #ffffff;
   --lu-color-black: #000000;
-  --lu-color-primary: #409eff;
+  --colors: (
+    primary: #409eff,
+    success: #67c23a,
+    warning: #e6a23c,
+    danger: #f56c6c,
+    info: #909399
+  );
+
+  @each $val, $color in var(--colors) {
+    --lu-color-$(val): $(color);
+    @for $i from 3 to 9 by 2 {
+      --lu-color-$(val)-light-$(i): mix(#fff, $(color), .$(i));
+    }
+    --lu-color-$(val)-light-8: mix(#fff, $(color), 0.8);
+    --lu-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+  }
+
+  /* --lu-color-primary: #409eff;
   --lu-color-primary-light-3: #79bbff;
   --lu-color-primary-light-5: #a0cfff;
   --lu-color-primary-light-7: #c6e2ff;
   --lu-color-primary-light-8: #d9ecff;
   --lu-color-primary-light-9: #ecf5ff;
   --lu-color-primary-dark-2: #337ecc;
+
   --lu-color-success: #67c23a;
   --lu-color-success-light-3: #95d475;
   --lu-color-success-light-5: #b3e19d;
@@ -16,14 +34,15 @@
   --lu-color-success-light-8: #e1f3d8;
   --lu-color-success-light-9: #f0f9eb;
   --lu-color-success-dark-2: #529b2e;
+
   --lu-color-warning: #e6a23c;
   --lu-color-warning-light-3: #eebe77;
   --lu-color-warning-light-5: #f3d19e;
   --lu-color-warning-light-7: #f8e3c5;
   --lu-color-warning-light-8: #faecd8;
   --lu-color-warning-light-9: #fdf6ec;
-
   --lu-coLor-warning-dark-2: #688230;
+
   --lu-color-danger: #f56c6c;
   --lu-color-danger-light-3: #f89898;
   --lu-color-danger-light-5: #fab6b6;
@@ -31,13 +50,14 @@
   --lu-coLor-danger-light-8: #fde2e2;
   --lu-color-danger-light-9: #fef0f0;
   --lu-color-danger-dark-2: #c45656;
+
   --lu-color-info: #909399;
   --lu-color-info-light-3: #b1b3b8;
   --lu-color-info-light-5: #c8c9cc;
   --lu-color-info-light-7: #dedfe0;
   --lu-color-info-light-8: #e9e9eb;
   --lu-color-info-light-9: #f4f4f5;
-  --lu-color-info-dark-2: #73767a;
+  --lu-color-info-dark-2: #73767a; */
 
   --lu-bg-color: #ffffff;
   --lu-bg-color-page: #f2f3f5;
@@ -64,7 +84,7 @@
   /* border */
   --lu-border-width: 1px;
   --lu-border-style: solid;
-  --lu-border-color-hover: var(—vk-text-color-disabled);
+  --lu-border-color-hover: var(—lu-text-color-disabled);
   --lu-border: var(--lu-border-width) var(--lu-border-style) var(--lu-border-color);
   --lu-border-radius-base: 4px;
   --lu-border-radius-small: 2px;
