@@ -82,20 +82,43 @@
     border-color: var(--lu-button-disabled-border-color);
   }
 }
-@each $val in primary,success,warning,info,danger {
-    .lu-button--$(val){
-        --lu-button-text-color: var(--lu-color-white);
-        --lu-button-bg-color: var(--lu-color-$(val));
-        --lu-button-border-color: var(--lu-color-$(val));
-        --lu-button-outline-color: var(--lu-color-$(val)-light-5);
-        --lu-button-active-color: var(--lu-color-$(val)-dark-2);
-        --lu-button-hover-text-color: var(--lu-color-white);
-        --lu-button-hover-bg-color: var(--lu-color-$(val)-light-3);
-        --lu-button-hover-border-color: var(--lu-color-$(val)-light-3);
-        --lu-button-active-bg-color: var(--lu-color-$(val)-dark-2);
-        --lu-button-active-border-color: var(--lu-color-$(val)-dark-2);
-        --lu-button-disabled-text-color: var(--lu-color-white);
-        --lu-button-disabled-bg-color: var(--lu-color-$(val)-light-5);
-        --lu-button-disabled-border-color: var(--lu-color-$(val)-light-5);
-    }
+@each $val in primary, success, warning, info, danger {
+  .lu-button--$(val) {
+    --lu-button-text-color: var(--lu-color-white);
+    --lu-button-bg-color: var(--lu-color-$(val));
+    --lu-button-border-color: var(--lu-color-$(val));
+    --lu-button-outline-color: var(--lu-color-$(val)-light-5);
+    --lu-button-active-color: var(--lu-color-$(val)-dark-2);
+    --lu-button-hover-text-color: var(--lu-color-white);
+    --lu-button-hover-bg-color: var(--lu-color-$(val)-light-3);
+    --lu-button-hover-border-color: var(--lu-color-$(val)-light-3);
+    --lu-button-active-bg-color: var(--lu-color-$(val)-dark-2);
+    --lu-button-active-border-color: var(--lu-color-$(val)-dark-2);
+    --lu-button-disabled-text-color: var(--lu-color-white);
+    --lu-button-disabled-bg-color: var(--lu-color-$(val)-light-5);
+    --lu-button-disabled-border-color: var(--lu-color-$(val)-light-5);
+  }
+  .lu-button--$(val).is-plain {
+    --lu-button-text-color: var(--lu-color-$(val));
+    --lu-button-bg-color: var(--lu-color-$(val)-light-9);
+    --lu-button-border-color: var(--lu-color-$(val)-light-5);
+    --lu-button-hover-text-color: var(--lu-color-white);
+    --lu-button-hover-bg-color: var(--lu-color-$(val));
+    --lu-button-hover-border-color: var(--lu-color-$(val));
+    --lu-button-active-text-color: var(--lu-color-white);
+  }
+}
+.lu-button--large {
+  --lu-button-size: 40px;
+  height: var(--lu-button-size);
+  padding: 12px 19px;
+  font-size: var(--lu-font-size-base);
+  border-radius: var(--lu-border-radius-base);
+}
+.lu-button--small {
+  --lu-button-size: 24px;
+  height: var(--lu-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--lu-border-radius-base) - 1px);
 }

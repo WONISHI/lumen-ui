@@ -10,8 +10,16 @@ import Button from "./components/Button/Button.vue";
     <Button type="warning">warning</Button>
     <Button type="info">info</Button>
     <Button type="danger">danger</Button>
+    <br />
+    <p />
     <Button plain>plain</Button>
     <Button circle>circle</Button>
+    <Button round>round</Button>
+    <Button disabled>disabled</Button>
+    <br />
+    <p />
+    <Button size="large">large</Button>
+    <Button size="small">small</Button>
   </header>
 </template>
 
