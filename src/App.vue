@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Button from "./components/Button/Button.vue";
+import Collapse from "./components/Collapse/Collapse.vue";
+import CollapseItem from "./components/Collapse/CollapseItem.vue";
 </script>
 
 <template>
@@ -20,6 +22,22 @@ import Button from "./components/Button/Button.vue";
     <p />
     <Button size="large">large</Button>
     <Button size="small">small</Button>
+    <h3>Collapse</h3>
+    <Collapse>
+      <CollapseItem name="a">
+        <template #title>
+          <h1>nice title</h1>
+        </template>
+        <h1>headline title</h1>
+        <div>this is content a aaa</div>
+      </CollapseItem>
+      <CollapseItem name="b" title="bbbb">
+        <div>this is content a bbb</div>
+      </CollapseItem>
+      <CollapseItem name="b" title="bbbb" disabled>
+        <div>this is content a bbb</div>
+      </CollapseItem>
+    </Collapse>
   </header>
 </template>
 
