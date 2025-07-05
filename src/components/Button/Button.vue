@@ -32,6 +32,4 @@ defineExpose({
 });
 </script>
 
-<style scoped>
-@import './style.css'
-</style>
+<style scoped></style>

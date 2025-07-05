@@ -2,6 +2,12 @@
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
+import type { NameType } from "./components/Collapse/type";
+import { ref } from "vue";
+const openedValue = ref<NameType[]>(["a"]);
+// setTimeout(()=>{
+//   openedValue.value=['b','c']
+// },3000)
 </script>
 
 <template>
@@ -23,21 +29,22 @@ import CollapseItem from "./components/Collapse/CollapseItem.vue";
     <Button size="large">large</Button>
     <Button size="small">small</Button>
     <h3>Collapse</h3>
-    <Collapse>
+    <Collapse v-model="openedValue" accordion>
       <CollapseItem name="a">
         <template #title>
-          <h1>nice title</h1>
+          <h1>标题a nice title</h1>
         </template>
         <h1>headline title</h1>
         <div>this is content a aaa</div>
       </CollapseItem>
-      <CollapseItem name="b" title="bbbb">
+      <CollapseItem name="b" title="标题b">
         <div>this is content a bbb</div>
       </CollapseItem>
-      <CollapseItem name="b" title="bbbb" disabled>
+      <CollapseItem name="c" title="标题c" disabled>
         <div>this is content a bbb</div>
       </CollapseItem>
     </Collapse>
+    {{ openedValue }}
   </header>
 </template>
 
@@ -67,5 +74,8 @@ header {
     place-items: flex-start;
     flex-wrap: wrap;
   }
+}
+h1{
+  background-color: #fff;
 }
 </style>
