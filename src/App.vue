@@ -2,7 +2,8 @@
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
-import type { NameType } from "./components/Collapse/type";
+import type { NameType } from "./components/Collapse/types";
+import Icon from "./components/Icon/Icon.vue";
 import { ref } from "vue";
 const openedValue = ref<NameType[]>(["a"]);
 // setTimeout(()=>{
@@ -28,6 +29,10 @@ const openedValue = ref<NameType[]>(["a"]);
     <p />
     <Button size="large">large</Button>
     <Button size="small">small</Button>
+    <br />
+    <p />
+    <Button size="large" loading>loading</Button>
+    <Button size="large" icon="arrow-up">arrow-up</Button>
     <h3>Collapse</h3>
     <Collapse v-model="openedValue" accordion>
       <CollapseItem name="a">
@@ -44,7 +49,9 @@ const openedValue = ref<NameType[]>(["a"]);
         <div>this is content a bbb</div>
       </CollapseItem>
     </Collapse>
-    {{ openedValue }}
+    <h3>Icon</h3>
+    <Icon icon="fa-solid fa-user-secret" />
+    <Icon icon="arrow-up" size="2xl" spin />
   </header>
 </template>
 

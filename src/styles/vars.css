@@ -2,13 +2,7 @@
   /* colors */
   --lu-color-white: #ffffff;
   --lu-color-black: #000000;
-  --colors: (
-    primary: #409eff,
-    success: #67c23a,
-    warning: #e6a23c,
-    danger: #f56c6c,
-    info: #909399
-  );
+  --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399);
 
   @each $val, $color in var(--colors) {
     --lu-color-$(val): $(color);
@@ -106,4 +100,7 @@
   --lu-disabled-bg-color: var(--lu-fill-color-light);
   --lu-disabled-text-color: var(--lu-text-color-placeholder);
   --lu-disabled-border-color: var(--lu-border-color-light);
+  /* animation */
+  --lu-transition-duration: 0.3s;
+  --lu-transition-duration-fast: 0.2s;
 }

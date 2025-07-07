@@ -23,6 +23,8 @@ export interface ButtonProps {
   disabled?: boolean;
   nativeType?: NativeType;
   autofucs?: boolean;
+  icon?: string;
+  loading?: boolean;
 }
 export interface ButtonInstance {
   ref: HTMLButtonElement;

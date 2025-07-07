@@ -81,6 +81,9 @@
     background-color: var(--lu-button-disabled-bg-color);
     border-color: var(--lu-button-disabled-border-color);
   }
+  [class*lu-icon-] + span {
+    margin-left: 6px;
+  }
 }
 @each $val in primary, success, warning, info, danger {
   .lu-button--$(val) {

@@ -1,0 +1,16 @@
+.lu-icon {
+    --lu-icon-color: inherit;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    fill: currentColor;
+    color: var(--lu-icon-color);
+    font-size: inherit;
+  }
+  
+  @each $val in primary,info,success,warning,danger {
+    .lu-icon--$(val) {
+      --lu-icon-color: var(--lu-color-$(val));
+    }
+  }

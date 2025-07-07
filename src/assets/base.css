@@ -1,43 +1,52 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --lu-color-white: #ffffff;
-  --lu-color-white-soft: #f8f8f8;
-  --lu-color-white-mute: #f2f2f2;
-  --lu-color-black: #181818;
-  --lu-color-black-soft: #222222;
-  --lu-color-black-mute: #282828;
-  --lu-color-indigo: #2c3e50;
-  --lu-color-divider-light-1: rgba(60, 60, 60, 0.29);
-  --lu-color-divider-light-2: rgba(60, 60, 60, 0.12);
-  --lu-color-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --lu-color-divider-dark-2: rgba(84, 84, 84, 0.48);
-  --lu-color-text-light-1: var(--lu-color-indigo);
-  --lu-color-text-light-2: rgba(60, 60, 60, 0.66);
-  --lu-color-text-dark-1: var(--lu-color-white);
-  --lu-color-text-dark-2: rgba(235, 235, 235, 0.64);
+  --lu-c-white: #ffffff;
+  --lu-c-white-soft: #f8f8f8;
+  --lu-c-white-mute: #f2f2f2;
+
+  --lu-c-black: #181818;
+  --lu-c-black-soft: #222222;
+  --lu-c-black-mute: #282828;
+
+  --lu-c-indigo: #2c3e50;
+
+  --lu-c-divider-light-1: rgba(60, 60, 60, 0.29);
+  --lu-c-divider-light-2: rgba(60, 60, 60, 0.12);
+  --lu-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+  --lu-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+
+  --lu-c-text-light-1: var(--lu-c-indigo);
+  --lu-c-text-light-2: rgba(60, 60, 60, 0.66);
+  --lu-c-text-dark-1: var(--lu-c-white);
+  --lu-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
 /* semantic color variables for this project */
 :root {
-  --color-background: var(--lu-color-white);
-  --color-background-soft: var(--lu-color-white-soft);
-  --color-background-mute: var(--lu-color-white-mute);
-  --color-border: var(--lu-color-divider-light-2);
-  --color-border-hover: var(--lu-color-divider-light-1);
-  --color-heading: var(--lu-color-text-light-1);
-  --color-text: var(--lu-color-text-light-1);
+  --color-background: var(--lu-c-white);
+  --color-background-soft: var(--lu-c-white-soft);
+  --color-background-mute: var(--lu-c-white-mute);
+
+  --color-border: var(--lu-c-divider-light-2);
+  --color-border-hover: var(--lu-c-divider-light-1);
+
+  --color-heading: var(--lu-c-text-light-1);
+  --color-text: var(--lu-c-text-light-1);
+
   --section-gap: 160px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--lu-color-black);
-    --color-background-soft: var(--lu-color-black-soft);
-    --color-background-mute: var(--lu-color-black-mute);
-    --color-border: var(--lu-color-divider-dark-2);
-    --color-border-hover: var(--lu-color-divider-dark-1);
-    --color-heading: var(--lu-color-text-dark-1);
-    --color-text: var(--lu-color-text-dark-2);
+    --color-background: var(--lu-c-black);
+    --color-background-soft: var(--lu-c-black-soft);
+    --color-background-mute: var(--lu-c-black-mute);
+
+    --color-border: var(--lu-c-divider-dark-2);
+    --color-border-hover: var(--lu-c-divider-dark-1);
+
+    --color-heading: var(--lu-c-text-dark-1);
+    --color-text: var(--lu-c-text-dark-2);
   }
 }
 

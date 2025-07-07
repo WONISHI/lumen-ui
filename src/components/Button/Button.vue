@@ -9,11 +9,14 @@
       'is-round': round,
       'is-circle': circle,
       'is-disabled': disabled,
+      'is-loading': loading,
     }"
-    :disabled="disabled"
+    :disabled="disabled || loading"
     :autofucs="autofucs"
     :type="nativeType"
   >
+    <Icon icon="spinner" spin v-if="loading"></Icon>
+    <Icon :icon="icon" v-if="icon"></Icon>
     <span>
       <slot />
     </span>
@@ -22,6 +25,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import type { ButtonProps } from "./types";
+import Icon from "../Icon/Icon.vue";
 defineOptions({ name: "LuButton" });
 withDefaults(defineProps<ButtonProps>(), {
   nativeType: "button",
