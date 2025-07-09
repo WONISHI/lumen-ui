@@ -1,4 +1,4 @@
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 export interface IconProps {
   border?: boolean;
   fixedWidth?: boolean;
@@ -41,4 +41,6 @@ export interface IconProps {
   beatFade?: boolean;
   spinPulse?: boolean;
   spinReverse?: boolean;
+  type?: "primary" | "success" | "warning" | "danger" | "info";
+  color?: string;
 }

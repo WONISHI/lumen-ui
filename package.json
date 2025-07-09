@@ -25,10 +25,13 @@
     "@vitejs/plugin-vue-jsx": "^5.0.0",
     "@vue-macros/volar": "^3.0.0-beta.15",
     "@vue/eslint-config-typescript": "^11.0.0",
+    "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
+    "axios": "^1.10.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
     "jiti": "^2.4.2",
+    "jsdom": "^26.1.0",
     "lodash-es": "^4.17.21",
     "npm-run-all2": "^8.0.4",
     "postcss-color-mix": "^1.1.0",
@@ -41,6 +44,7 @@
     "vite": "^7.0.0",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-vue-devtools": "^7.7.7",
+    "vitest": "^3.2.4",
     "vue-tsc": "^2.2.10"
   }
 }

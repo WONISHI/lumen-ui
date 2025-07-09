@@ -1,7 +1,8 @@
 {
   "files": [],
   "compilerOptions": {
-    "types": ["unplugin-vue-macros-global"]
+    "types": ["unplugin-vue-macros-global"],
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
   "vueCompilerOptions": {
     "plugins": [
