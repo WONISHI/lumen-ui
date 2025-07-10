@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import vueDevTools from "vite-plugin-vue-devtools";
+// @ts-ignore
 import eslint from "vite-plugin-eslint";
 import VueMacros from "unplugin-vue-macros";
 
