@@ -87,8 +87,11 @@ onMounted(async () => {
       <h3>
         Tooltip
       </h3>
-      <Tooltip content="我是提示内容" placement="right">
+      <Tooltip placement="right">
         <span>鼠标悬停在我上面</span>
+        <template #content>
+          <span>自定义提示内容</span>
+        </template>
       </Tooltip>
     </aside>
   </div>
