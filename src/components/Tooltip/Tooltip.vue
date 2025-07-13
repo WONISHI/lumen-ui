@@ -18,6 +18,7 @@ import useClickOutside from "@/hooks/useClickOutside";
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: "bottom",
   trigger: "hover",
+  transition:'fade'
 });
 const emits = defineEmits<TooltipEmits>();
 const isOpen = ref(false);
