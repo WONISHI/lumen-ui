@@ -4,13 +4,15 @@ import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
 import type { NameType } from "./components/Collapse/types";
+import type { TooltipInstance } from "./components/Tooltip/types";
 import Icon from "./components/Icon/Icon.vue";
 import { createPopper } from "@popperjs/core";
 import { ref, onMounted } from "vue";
-import VNode from "./components/VNode/VNode.tsx"
+import VNode from "./components/VNode/VNode.tsx";
 const openedValue = ref<NameType[]>(["a"]);
 const overlayNode = ref<HTMLElement | null>(null);
 const triggerNode = ref<HTMLElement | null>(null);
+const tooltipRef = ref<TooltipInstance | null>(null);
 // setTimeout(()=>{
 //   openedValue.value=['b','c']
 // },3000)
@@ -20,6 +22,7 @@ onMounted(async () => {
       placement: "bottom",
     });
   }
+  console.log(tooltipRef.value)
 });
 </script>
 
@@ -84,15 +87,21 @@ onMounted(async () => {
       </div>
     </aside>
     <aside>
-      <h3>
-        Tooltip
-      </h3>
+      <h3>Tooltip</h3>
       <Tooltip placement="right">
         <span>鼠标悬停在我上面</span>
         <template #content>
           <span>自定义提示内容</span>
         </template>
       </Tooltip>
+      <Tooltip placement="right" manual ref="tooltipRef">
+        <span>鼠标悬停在我上面</span>
+        <template #content>
+          <span>自定义提示内容</span>
+        </template>
+      </Tooltip>
+      <Button @click="tooltipRef?.show()">手动显示</Button>
+      <Button @click="tooltipRef?.hide()">关闭</Button>
     </aside>
   </div>
 </template>
