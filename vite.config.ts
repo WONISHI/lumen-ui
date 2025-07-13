@@ -17,7 +17,9 @@ export default defineConfig({
         vueJsx: vueJsx(),
       },
     }),
-    eslint(),
+    eslint({
+      include: ["src/**/*.ts", "src/**/*.vue"],
+    }),
     vueDevTools(),
   ],
   resolve: {

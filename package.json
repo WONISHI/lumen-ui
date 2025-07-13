@@ -11,6 +11,11 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts"
+    }
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
@@ -39,7 +44,7 @@
     "postcss-each-variables": "^0.3.0",
     "postcss-for": "^2.1.1",
     "postcss-nested": "^6.0.1",
-    "typescript": "^5.8.3",
+    "typescript": "^5.1.6",
     "unplugin-vue-macros": "^2.14.5",
     "vite": "^7.0.0",
     "vite-plugin-eslint": "^1.8.1",
