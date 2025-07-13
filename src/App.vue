@@ -4,12 +4,22 @@ import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import type { NameType } from "./components/Collapse/types";
 import Icon from "./components/Icon/Icon.vue";
-import { ref } from "vue";
-import VNode from "./components/VNode/VNode.tsx";
+import { createPopper } from "@popperjs/core";
+import { ref, onMounted } from "vue";
+import VNode from "./components/VNode/VNode.tsx"
 const openedValue = ref<NameType[]>(["a"]);
+const overlayNode = ref<HTMLElement | null>(null);
+const triggerNode = ref<HTMLElement | null>(null);
 // setTimeout(()=>{
 //   openedValue.value=['b','c']
 // },3000)
+onMounted(async () => {
+  if (triggerNode.value && overlayNode.value) {
+    createPopper(triggerNode.value, overlayNode.value, {
+      placement: "bottom",
+    });
+  }
+});
 </script>
 
 <template>
@@ -62,6 +72,15 @@ const openedValue = ref<NameType[]>(["a"]);
     <aside>
       <h3>VNode</h3>
       <VNode msg="hello world"></VNode>
+    </aside>
+    <aside>
+      <h3>test</h3>
+      <div>
+        <div ref="triggerNode">我是按钮</div>
+        <div ref="overlayNode">
+          <span>我是描述</span>
+        </div>
+      </div>
     </aside>
   </div>
 </template>
