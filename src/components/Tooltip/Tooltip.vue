@@ -1,5 +1,5 @@
 <template>
-  <div class="lu-tooltip" v-on="outerEvents">
+  <div ref="popperContainerNode" class="lu-tooltip" v-on="outerEvents">
     <div class="lu-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot />
     </div>
@@ -14,14 +14,16 @@
 import type { TooltipProps, TooltipEmits } from "./types";
 import { ref, watch, reactive } from "vue";
 import { type Instance, createPopper } from "@popperjs/core";
+import useClickOutside from "@/hooks/useClickOutside";
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: "bottom",
   trigger: "hover",
 });
 const emits = defineEmits<TooltipEmits>();
 const isOpen = ref(false);
-const popperNode = ref<HTMLElement | null>(null);
-const triggerNode = ref<HTMLElement | null>(null);
+const popperNode = ref<HTMLElement>();
+const triggerNode = ref<HTMLElement>();
+const popperContainerNode = ref<HTMLElement>();
 let popperInstance: null | Instance = null;
 let events: Record<string, any> = reactive({});
 let outerEvents: Record<string, any> = reactive({});
@@ -37,7 +39,11 @@ const close = () => {
   isOpen.value = false;
   emits("visible-change", false);
 };
-
+useClickOutside(popperContainerNode, () => {
+  if (props.trigger==='click' && isOpen.value) {
+    close();
+  }
+});
 const attachEvents = () => {
   if (props.trigger === "hover") {
     events["mouseenter"] = open;
