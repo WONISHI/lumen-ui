@@ -2,6 +2,7 @@
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
+import Tooltip from "./components/Tooltip/Tooltip.vue";
 import type { NameType } from "./components/Collapse/types";
 import Icon from "./components/Icon/Icon.vue";
 import { createPopper } from "@popperjs/core";
@@ -81,6 +82,14 @@ onMounted(async () => {
           <span>我是描述</span>
         </div>
       </div>
+    </aside>
+    <aside>
+      <h3>
+        Tooltip
+      </h3>
+      <Tooltip content="我是提示内容" placement="right">
+        <span>鼠标悬停在我上面</span>
+      </Tooltip>
     </aside>
   </div>
 </template>
