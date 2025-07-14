@@ -4,10 +4,11 @@
       <slot />
     </div>
     <Transition name="transition">
-      <div v-if="isOpen" class="lu-tooltip__content" ref="popperNode">
+      <div v-if="isOpen" class="lu-tooltip__popper" ref="popperNode">
         <slot name="content">
           {{ props.content }}
         </slot>
+        <div id="arrow" data-popper-arrow></div>
       </div>
     </Transition>
   </div>
@@ -38,6 +39,14 @@ let closeTimes = 0;
 const popperOptions = computed(() => {
   return {
     placement: props.placement,
+    modifiers:[
+        {
+            name: "offset",
+            options: {
+                offset: [0, 9],
+            },
+        }
+    ],
     ...props.popperOptions,
   };
 });
