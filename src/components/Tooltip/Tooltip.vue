@@ -43,9 +43,9 @@ const popperOptions = computed(() => {
 });
 const togglePopper = () => {
   if (isOpen.value) {
-    closeDebounce();
+    closeFinal();
   } else {
-    openDebounce();
+    openFinal();
   }
   //   isOpen.value = !isOpen.value;
   //   emits("visible-change", isOpen.value);
@@ -65,13 +65,13 @@ const close = () => {
 
 useClickOutside(popperContainerNode, () => {
   if (props.trigger === "click" && isOpen.value && !props.manual) {
-    closeDebounce();
+    closeFinal();
   }
 });
 const attachEvents = () => {
   if (props.trigger === "hover") {
-    events["mouseenter"] = openDebounce;
-    outerEvents["mouseleave"] = closeDebounce;
+    events["mouseenter"] = openFinal;
+    outerEvents["mouseleave"] = closeFinal;
   } else {
     events["click"] = togglePopper;
   }
@@ -79,6 +79,14 @@ const attachEvents = () => {
 
 const openDebounce = debounce(open, props.openDelay);
 const closeDebounce = debounce(close, props.closeDelay);
+const openFinal=()=>{
+    closeDebounce.cancel();
+    openDebounce();
+}
+const closeFinal=()=>{
+    openDebounce.cancel();
+    closeDebounce();
+}
 
 if (!props.manual) {
   attachEvents();
@@ -121,8 +129,8 @@ onUnmounted(() => {
   popperInstance?.destroy();
 });
 defineExpose<TooltipInstance>({
-  show: openDebounce,
-  hide: closeDebounce,
+  show: openFinal,
+  hide: closeFinal,
 });
 </script>
 <style></style>
