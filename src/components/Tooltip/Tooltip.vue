@@ -3,22 +3,27 @@
     <div class="lu-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot />
     </div>
-    <div v-if="isOpen" class="lu-tooltip__content" ref="popperNode">
-      <slot name="content">
-        {{ props.content }}
-      </slot>
-    </div>
+    <Transition name="transition">
+      <div v-if="isOpen" class="lu-tooltip__content" ref="popperNode">
+        <slot name="content">
+          {{ props.content }}
+        </slot>
+      </div>
+    </Transition>
   </div>
 </template>
 <script setup lang="ts">
 import type { TooltipProps, TooltipEmits, TooltipInstance } from "./types";
 import { ref, watch, reactive, onUnmounted, computed } from "vue";
 import { type Instance, createPopper } from "@popperjs/core";
+import { debounce } from "lodash-es";
 import useClickOutside from "@/hooks/useClickOutside";
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: "bottom",
   trigger: "hover",
-  transition:'fade'
+  transition: "fade",
+  openDelay: 0,
+  closeDelay: 0,
 });
 const emits = defineEmits<TooltipEmits>();
 const isOpen = ref(false);
@@ -28,6 +33,8 @@ const popperContainerNode = ref<HTMLElement>();
 let popperInstance: null | Instance = null;
 let events: Record<string, any> = reactive({});
 let outerEvents: Record<string, any> = reactive({});
+let openTimes = 0;
+let closeTimes = 0;
 const popperOptions = computed(() => {
   return {
     placement: props.placement,
@@ -35,30 +42,44 @@ const popperOptions = computed(() => {
   };
 });
 const togglePopper = () => {
-  isOpen.value = !isOpen.value;
-  emits("visible-change", isOpen.value);
+  if (isOpen.value) {
+    closeDebounce();
+  } else {
+    openDebounce();
+  }
+  //   isOpen.value = !isOpen.value;
+  //   emits("visible-change", isOpen.value);
 };
 const open = () => {
+  openTimes++;
+  console.log("openTimes", openTimes);
   isOpen.value = true;
   emits("visible-change", true);
 };
 const close = () => {
+  closeTimes++;
+  console.log("closeTimes", closeTimes);
   isOpen.value = false;
   emits("visible-change", false);
 };
+
 useClickOutside(popperContainerNode, () => {
   if (props.trigger === "click" && isOpen.value && !props.manual) {
-    close();
+    closeDebounce();
   }
 });
 const attachEvents = () => {
   if (props.trigger === "hover") {
-    events["mouseenter"] = open;
-    outerEvents["mouseleave"] = close;
+    events["mouseenter"] = openDebounce;
+    outerEvents["mouseleave"] = closeDebounce;
   } else {
     events["click"] = togglePopper;
   }
 };
+
+const openDebounce = debounce(open, props.openDelay);
+const closeDebounce = debounce(close, props.closeDelay);
+
 if (!props.manual) {
   attachEvents();
 }
@@ -88,7 +109,6 @@ watch(
   (newValue) => {
     if (newValue) {
       if (triggerNode.value && popperNode.value) {
-        console.log(popperOptions.value)
         popperInstance = createPopper(triggerNode.value, popperNode.value, popperOptions.value);
       } else {
         popperInstance?.destroy();
@@ -101,8 +121,8 @@ onUnmounted(() => {
   popperInstance?.destroy();
 });
 defineExpose<TooltipInstance>({
-  show: open,
-  hide: close,
+  show: openDebounce,
+  hide: closeDebounce,
 });
 </script>
 <style></style>

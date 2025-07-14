@@ -104,6 +104,12 @@ onMounted(async () => {
       </Tooltip>
       <Button @click="tooltipRef?.show()">手动显示</Button>
       <Button @click="tooltipRef?.hide()">关闭</Button>
+      <Tooltip placement="right" :open-delay="3000" :close-delay="3000">
+        <span>鼠标悬停在我上面</span>
+        <template #content>
+          <span>自定义提示内容</span>
+        </template>
+      </Tooltip>
     </aside>
   </div>
 </template>
