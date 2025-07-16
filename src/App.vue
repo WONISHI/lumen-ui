@@ -3,7 +3,7 @@ import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
-import Dropdown from "./components/Dropdown/Dropdown.vue";
+import Dropdown from "./components/Dropdown/Dropdown";
 import type { NameType } from "./components/Collapse/types";
 import type { TooltipInstance } from "./components/Tooltip/types";
 import type { Options } from "@popperjs/core";
@@ -124,7 +124,8 @@ onMounted(async () => {
         ]"
         trigger="click"
         placement="bottom-start"
-        @select="(e) => console.log('selected:', e)"
+        @select="key => console.log(key)"
+        @visible-change="visible => console.log(visible)"
       >
         <Button>点击我</Button>
       </Dropdown>
