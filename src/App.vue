@@ -3,12 +3,13 @@ import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
+import Dropdown from "./components/Dropdown/Dropdown.vue";
 import type { NameType } from "./components/Collapse/types";
 import type { TooltipInstance } from "./components/Tooltip/types";
 import type { Options } from "@popperjs/core";
 import Icon from "./components/Icon/Icon.vue";
 import { createPopper } from "@popperjs/core";
-import { ref, onMounted } from "vue";
+import { ref, onMounted,h } from "vue";
 import VNode from "./components/VNode/VNode.tsx";
 const openedValue = ref<NameType[]>(["a"]);
 const overlayNode = ref<HTMLElement | null>(null);
@@ -111,6 +112,23 @@ onMounted(async () => {
         </template>
       </Tooltip>
     </aside>
+    <aside>
+      <h3>Dropdown</h3>
+      <Dropdown
+        :menu-options="[
+          { key: '1', label: '选项1' },
+          { key: '2', label: h('b', '选项2'), disabled: true },
+          { key: '3', label: '选项3' },
+          { key: '4', label: '选项4', divided: true },
+          { key: '5', label: '选项5' }
+        ]"
+        trigger="click"
+        placement="bottom-start"
+        @select="(e) => console.log('selected:', e)"
+      >
+        <Button>点击我</Button>
+      </Dropdown>
+      </aside>
   </div>
 </template>
 

@@ -61,13 +61,11 @@ const togglePopper = () => {
 };
 const open = () => {
   openTimes++;
-  console.log("openTimes", openTimes);
   isOpen.value = true;
   emits("visible-change", true);
 };
 const close = () => {
   closeTimes++;
-  console.log("closeTimes", closeTimes);
   isOpen.value = false;
   emits("visible-change", false);
 };
