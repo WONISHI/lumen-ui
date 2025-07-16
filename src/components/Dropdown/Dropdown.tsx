@@ -78,8 +78,8 @@ export default defineComponent({
       });
     });
     expose({
-      show: tooltipRef.value?.show,
-      hide: tooltipRef.value?.hide,
+      show: () => tooltipRef.value?.show(),
+      hide: () => tooltipRef.value?.hide(),
     });
     return () => (
       <div class="lu-dropdown">

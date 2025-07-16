@@ -34,19 +34,22 @@ import type { TooltipInstance } from "../Tooltip/types";
 import type { DropdownProps, DropdownInstance, DropdownEmits, MenuOptions } from "./types";
 import Tooltip from "../Tooltip/Tooltip.vue";
 import RenderVnode from "../Common/RenderVnode";
+defineOptions({
+  name: "LuDropdown",
+});
 const tooltipRef = ref() as Ref<TooltipInstance>;
 const props = withDefaults(defineProps<DropdownProps>(),{
     hideAfterClick: true,
 });
-const emits = defineEmits<DropdownEmits>();
+const emit = defineEmits<DropdownEmits>();
 const visibleChange = (visible: boolean) => {
-  emits("visible-change", visible);
+  emit("visible-change", visible);
 };
 const itemClick = (e: MenuOptions) => {
   if (e.disabled) {
     return;
   }
-  emits("select", e);
+  emit("select", e);
   if (props.hideAfterClick) {
     tooltipRef.value?.hide();
   }
