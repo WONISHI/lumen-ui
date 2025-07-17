@@ -4,18 +4,19 @@ import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
 import Dropdown from "./components/Dropdown/Dropdown";
+import Message from "./components/Message/Message.vue";
 import type { NameType } from "./components/Collapse/types";
 import type { TooltipInstance } from "./components/Tooltip/types";
 import type { Options } from "@popperjs/core";
 import Icon from "./components/Icon/Icon.vue";
 import { createPopper } from "@popperjs/core";
-import { ref, onMounted,h } from "vue";
+import { ref, onMounted, h } from "vue";
 import VNode from "./components/VNode/VNode.tsx";
 const openedValue = ref<NameType[]>(["a"]);
 const overlayNode = ref<HTMLElement | null>(null);
 const triggerNode = ref<HTMLElement | null>(null);
 const tooltipRef = ref<TooltipInstance | null>(null);
-const options: Partial<Options> = { placement: "right-end",strategy: "fixed" };
+const options: Partial<Options> = { placement: "right-end", strategy: "fixed" };
 // setTimeout(()=>{
 //   openedValue.value=['b','c']
 // },3000)
@@ -120,16 +121,19 @@ onMounted(async () => {
           { key: '2', label: h('b', '选项2'), disabled: true },
           { key: '3', label: '选项3' },
           { key: '4', label: '选项4', divided: true },
-          { key: '5', label: '选项5' }
+          { key: '5', label: '选项5' },
         ]"
         trigger="click"
         placement="bottom-start"
-        @select="key => console.log(key)"
-        @visible-change="visible => console.log(visible)"
+        @select="(key) => console.log(key)"
+        @visible-change="(visible) => console.log(visible)"
       >
         <Button>点击我</Button>
       </Dropdown>
-      </aside>
+    </aside>
+    <aside>
+      <Message message="hello" :duration="0" :show-close="true"></Message>
+    </aside>
   </div>
 </template>
 

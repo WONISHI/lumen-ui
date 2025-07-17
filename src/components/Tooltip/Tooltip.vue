@@ -19,6 +19,9 @@ import { ref, watch, reactive, onUnmounted, computed } from "vue";
 import { type Instance, createPopper } from "@popperjs/core";
 import { debounce } from "lodash-es";
 import useClickOutside from "@/hooks/useClickOutside";
+defineOptions({
+  name: "LuTooltip",
+});
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: "bottom",
   trigger: "hover",
