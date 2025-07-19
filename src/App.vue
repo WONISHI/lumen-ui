@@ -4,7 +4,7 @@ import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
 import Dropdown from "./components/Dropdown/Dropdown";
-import Message from "./components/Message/Message.vue";
+import { createMessage } from "./components/Message/methods";
 import type { NameType } from "./components/Collapse/types";
 import type { TooltipInstance } from "./components/Tooltip/types";
 import type { Options } from "@popperjs/core";
@@ -27,6 +27,8 @@ onMounted(async () => {
     });
   }
   console.log(tooltipRef.value);
+  createMessage({message:'hello word',duration:0})
+  createMessage({message:'hello world again',duration:0})
 });
 </script>
 
@@ -132,7 +134,7 @@ onMounted(async () => {
       </Dropdown>
     </aside>
     <aside>
-      <Message message="hello" :duration="0" :show-close="true"></Message>
+      <!-- <Message message="hello" :duration="0" :show-close="true"></Message> -->
     </aside>
   </div>
 </template>
