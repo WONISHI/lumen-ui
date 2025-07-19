@@ -57,8 +57,8 @@ export const getLastBottomOffset = (id: string) => {
   }
 };
 
-export const closeAll=()=>{
-  instances.forEach(instance=>{
-    instance.destory()
-  })
-}
+export const closeAll = () => {
+  instances.forEach((instance) => {
+    instance.destory();
+  });
+};

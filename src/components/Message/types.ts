@@ -5,7 +5,7 @@ export interface MessageProps {
   duration?: number;
   showClose?: boolean;
   onDestory: () => void;
-  offet?: number;
+  offset?: number;
   id?: string;
   zIndex: number;
   transitionName?: string;
