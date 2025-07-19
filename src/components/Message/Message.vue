@@ -25,7 +25,7 @@
   </Transition>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref, watch, computed, nextTick } from "vue";
+import { onMounted, ref, computed, } from "vue";
 import type { MessageProps } from "./types";
 import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
@@ -34,7 +34,7 @@ import useEventListener from "@/hooks/useEventListener";
 const props = withDefaults(defineProps<MessageProps>(), {
   type: "info",
   duration: 3000,
-  offet: 20,
+  offset: 20,
   transitionName: "fade-up",
 });
 const visible = ref(false);
