@@ -38,7 +38,6 @@ const messageRef = ref<HTMLElement>();
 const height = ref(0);
 // 上一个实例的最下面的坐标数字，第一个是0
 const lastOffset = computed(() => getLastBottomOffset(props.id!));
-console.log('last',lastOffset.value,props)
 //这个元素应该十一的是top
 const topOffset = computed(() => props.offet + lastOffset.value);
 // 这个元素为下一个元素预留的offset，也就是最底端bottom的值
@@ -66,6 +65,7 @@ watch(visible, (newValue) => {
 });
 defineExpose({
   bottomOffset,
+  visible
 });
 </script>
 <style>
