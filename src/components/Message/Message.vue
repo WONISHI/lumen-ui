@@ -26,6 +26,7 @@ import type { MessageProps } from "./types";
 import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
 import { getLastBottomOffset } from "./methods";
+import useEventListener from "@/hooks/useEventListener";
 const props = withDefaults(defineProps<MessageProps>(), {
   type: "info",
   duration: 3000,
@@ -44,6 +45,7 @@ const topOffset = computed(() => props.offet + lastOffset.value);
 const bottomOffset = computed(() => height.value + topOffset.value);
 const cssStyle = computed(() => ({
   top: topOffset.value + "px",
+  zIndex: props.zIndex,
 }));
 function startTimer() {
   if (props.duration === 0) return;
@@ -56,8 +58,15 @@ onMounted(async () => {
   startTimer();
   await nextTick();
   height.value = messageRef.value!.getBoundingClientRect().height;
-  console.log('height',height.value)
+  console.log("height", height.value);
 });
+function keydown(e: Event) {
+  const event = e as KeyboardEvent;
+  if (event.code === "Escape") {
+    visible.value = false;
+  }
+}
+useEventListener(document, "keydown", keydown);
 watch(visible, (newValue) => {
   if (!newValue) {
     props.onDestory();
@@ -65,7 +74,7 @@ watch(visible, (newValue) => {
 });
 defineExpose({
   bottomOffset,
-  visible
+  visible,
 });
 </script>
 <style>
