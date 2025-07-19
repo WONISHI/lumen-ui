@@ -9,6 +9,8 @@
     role="alert"
     ref="messageRef"
     :style="cssStyle"
+    @mouseenter="clearTimer"
+    @mouseleave="startTimer"
   >
     <div class="lu-message__content">
       <slot>
@@ -43,15 +45,19 @@ const lastOffset = computed(() => getLastBottomOffset(props.id!));
 const topOffset = computed(() => props.offet + lastOffset.value);
 // 这个元素为下一个元素预留的offset，也就是最底端bottom的值
 const bottomOffset = computed(() => height.value + topOffset.value);
+let timer: any;
 const cssStyle = computed(() => ({
   top: topOffset.value + "px",
   zIndex: props.zIndex,
 }));
 function startTimer() {
   if (props.duration === 0) return;
-  setTimeout(() => {
+  timer = setTimeout(() => {
     visible.value = false;
   }, props.duration);
+}
+function clearTimer() {
+  clearTimeout(timer);
 }
 onMounted(async () => {
   visible.value = true;

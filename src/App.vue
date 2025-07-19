@@ -27,8 +27,8 @@ onMounted(async () => {
     });
   }
   console.log(tooltipRef.value);
-  createMessage({message:'hello word',duration:0})
-  createMessage({message:'hello world again',duration:0})
+  createMessage({ message: "hello word", duration: 3000 });
+  createMessage({ message: "hello world again", duration: 0 });
 });
 </script>
 
