@@ -37,7 +37,6 @@ const props = withDefaults(defineProps<MessageProps>(), {
   offet: 20,
   transitionName: "fade-up",
 });
-console.log(props)
 const visible = ref(false);
 const messageRef = ref<HTMLElement>();
 //计算偏移高度
