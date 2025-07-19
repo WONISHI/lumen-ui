@@ -26,9 +26,8 @@ onMounted(async () => {
       placement: "bottom",
     });
   }
-  console.log(tooltipRef.value);
-  createMessage({ message: "hello word", duration: 3000 });
-  createMessage({ message: "hello world again", duration: 0 });
+  createMessage({ message: "hello word", duration: 80000, showClose: true, type: "info" });
+  createMessage({ message: "hello world again", duration: 4000, showClose: true,type:'danger' });
 });
 </script>
 

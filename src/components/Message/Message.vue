@@ -1,26 +1,28 @@
 <template>
-  <div
-    class="lu-message"
-    v-show="visible"
-    :class="{
-      [`lu-message--${props.type}`]: props.type,
-      'is-close': showClose,
-    }"
-    role="alert"
-    ref="messageRef"
-    :style="cssStyle"
-    @mouseenter="clearTimer"
-    @mouseleave="startTimer"
-  >
-    <div class="lu-message__content">
-      <slot>
-        <RenderVnode :vNode="message" v-if="message" />
-      </slot>
+  <Transition :name="transitionName" @after-leave="destroyComponent" @enter="updateHeight">
+    <div
+      class="lu-message"
+      v-show="visible"
+      :class="{
+        [`lu-message--${props.type}`]: props.type,
+        'is-close': showClose,
+      }"
+      role="alert"
+      ref="messageRef"
+      :style="cssStyle"
+      @mouseenter="clearTimer"
+      @mouseleave="startTimer"
+    >
+      <div class="lu-message__content">
+        <slot>
+          <RenderVnode :vNode="message" v-if="message" />
+        </slot>
+      </div>
+      <div class="lu-message__close" v-if="showClose">
+        <Icon icon="xmark" @click.stop="visible = false"></Icon>
+      </div>
     </div>
-    <div class="lu-message__close" v-if="showClose">
-      <Icon icon="xmark" @click.stop="visible = false"></Icon>
-    </div>
-  </div>
+  </Transition>
 </template>
 <script lang="ts" setup>
 import { onMounted, ref, watch, computed, nextTick } from "vue";
@@ -33,7 +35,9 @@ const props = withDefaults(defineProps<MessageProps>(), {
   type: "info",
   duration: 3000,
   offet: 20,
+  transitionName: "fade-up",
 });
+console.log(props)
 const visible = ref(false);
 const messageRef = ref<HTMLElement>();
 //计算偏移高度
@@ -62,9 +66,8 @@ function clearTimer() {
 onMounted(async () => {
   visible.value = true;
   startTimer();
-  await nextTick();
-  height.value = messageRef.value!.getBoundingClientRect().height;
-  console.log("height", height.value);
+  // await nextTick();
+  // height.value = messageRef.value!.getBoundingClientRect().height;
 });
 function keydown(e: Event) {
   const event = e as KeyboardEvent;
@@ -73,23 +76,20 @@ function keydown(e: Event) {
   }
 }
 useEventListener(document, "keydown", keydown);
-watch(visible, (newValue) => {
-  if (!newValue) {
-    props.onDestory();
-  }
-});
+// watch(visible, (newValue) => {
+//   if (!newValue) {
+//     props.onDestory();
+//   }
+// });
+function destroyComponent() {
+  props.onDestory();
+}
+function updateHeight() {
+  height.value = messageRef.value!.getBoundingClientRect().height;
+}
 defineExpose({
   bottomOffset,
   visible,
 });
 </script>
-<style>
-.lu-message {
-  width: max-content;
-  position: fixed;
-  left: 50%;
-  top: 20px;
-  transform: translateX(-50%);
-  border: 1px solid blue;
-}
-</style>
+<style></style>

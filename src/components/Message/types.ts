@@ -1,13 +1,14 @@
 import type { VNode, ComponentInternalInstance } from "vue";
 export interface MessageProps {
   message?: string | VNode;
-  type?: "success" | "warning" | "info" | "error";
+  type?: "info" | "success" | "warning" | "danger";
   duration?: number;
   showClose?: boolean;
   onDestory: () => void;
   offet?: number;
   id?: string;
   zIndex: number;
+  transitionName?: string;
 }
 
 export interface MessageContext {
