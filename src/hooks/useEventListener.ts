@@ -1,4 +1,4 @@
-import { onMounted, onBeforeUnmount, isRef, watch } from "vue";
+import { onMounted, onBeforeUnmount, isRef, watch, unref } from "vue";
 import type { Ref } from "vue";
 export default function useEventListener(
   target: Ref<EventTarget | null> | EventTarget,
@@ -16,6 +16,6 @@ export default function useEventListener(
     });
   }
   onBeforeUnmount(() => {
-    target.removeEventListener(event, handler);
+    unref(target)?.removeEventListener(event, handler);
   });
 }
