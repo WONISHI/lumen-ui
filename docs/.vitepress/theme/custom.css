@@ -1,8 +1,8 @@
 :root {
-  --vp-c-brand: var(--vk-color-primary);
-  --vp-c-brand-light: var(--vk-color-primary-light-3);
-  --vp-c-brand-lighter: var(--vk-color-primary-light-5);
-  --vp-c-brand-dark: var(--vk-color-primary-dark-2);
+  --vp-c-brand: var(--lu-color-primary);
+  --vp-c-brand-light: var(--lu-color-primary-light-3);
+  --vp-c-brand-lighter: var(--lu-color-primary-light-5);
+  --vp-c-brand-dark: var(--lu-color-primary-dark-2);
   --vp-c-brand-darker: #265F99;
 
   --component-preview-bg: var(--vp-code-block-bg);

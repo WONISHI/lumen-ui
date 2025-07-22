@@ -3,12 +3,12 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: "lumen-ui"
+  text: "基于Vue 3的UI组件库"
+  tagline: 最新 Vue3.3 + TS4 高仿 ElementPlus 打造自己的组件库
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: 开始使用
       link: /markdown-examples
     - theme: alt
       text: API Examples
