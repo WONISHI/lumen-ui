@@ -20,9 +20,15 @@
         <span v-if="$slots.prefix" class="lu-input__prefix">
           <slot name="prefix"></slot>
         </span>
-        <input class="lu-input__inner" :type="type" :disabled="disabled" />
+        <input
+          class="lu-input__inner"
+          :type="type"
+          :disabled="disabled"
+          v-model="innerValue"
+          @input="handleInput"
+        />
         <span v-if="$slots.suffix" class="lu-input__suffix">
-            <slot name="suffix"></slot>
+          <slot name="suffix"></slot>
         </span>
       </div>
       <div v-if="$slots.append" class="lu-input__append">
@@ -30,17 +36,31 @@
       </div>
     </template>
     <template v-else>
-      <textarea class="lu-input__wrapper" :disabled="disabled"></textarea>
+      <textarea
+        class="lu-input__wrapper"
+        :disabled="disabled"
+        v-model="innerValue"
+        @input="handleInput"
+      ></textarea>
     </template>
   </div>
 </template>
 <script lang="ts" setup>
-import type { InputProps } from "./types";
+import { ref,watch } from "vue";
+import type { InputProps, InputEmits } from "./types";
 defineOptions({
   name: "LuInput",
 });
-withDefaults(defineProps<InputProps>(), {
+const props = withDefaults(defineProps<InputProps>(), {
   type: "text",
 });
+const emits = defineEmits<InputEmits>();
+const innerValue = ref(props.modelValue);
+const handleInput = () => {
+  emits("update:modelValue", innerValue.value);
+};
+watch(()=>props.modelValue,(newValue)=>{
+  innerValue.value = newValue
+})
 </script>
 <style></style>
