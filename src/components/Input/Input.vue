@@ -9,6 +9,7 @@
       'is-append': $slots.append,
       'is-prefix': $slots.prefix,
       'is-suffix': $slots.suffix,
+      'is-focus': isFocus,
     }"
   >
     <!-- input -->
@@ -26,9 +27,17 @@
           :disabled="disabled"
           v-model="innerValue"
           @input="handleInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
         />
-        <span v-if="$slots.suffix" class="lu-input__suffix">
+        <span v-if="$slots.suffix || showClear" class="lu-input__suffix">
           <slot name="suffix"></slot>
+          <Icon
+            icon="circle-xmark"
+            v-if="showClear"
+            class="lu-input__clear"
+            @click="clear"
+          ></Icon>
         </span>
       </div>
       <div v-if="$slots.append" class="lu-input__append">
@@ -41,26 +50,46 @@
         :disabled="disabled"
         v-model="innerValue"
         @input="handleInput"
+        @focus="handleFocus"
+        @blur="handleBlur"
       ></textarea>
     </template>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref,watch } from "vue";
+import { ref, watch, computed } from "vue";
 import type { InputProps, InputEmits } from "./types";
+import Icon from "../Icon/Icon.vue";
 defineOptions({
   name: "LuInput",
 });
 const props = withDefaults(defineProps<InputProps>(), {
   type: "text",
 });
+const showClear = computed(
+  () => props.clearable && !props.disabled && !!innerValue.value && isFocus.value
+);
+const isFocus = ref(false);
 const emits = defineEmits<InputEmits>();
 const innerValue = ref(props.modelValue);
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
 };
-watch(()=>props.modelValue,(newValue)=>{
-  innerValue.value = newValue
-})
+const handleFocus = () => {
+  isFocus.value = true;
+};
+const handleBlur = () => {
+  isFocus.value = false;
+};
+const clear=()=>{
+    innerValue.value=''
+    emits("update:modelValue", innerValue.value);
+}
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    innerValue.value = newValue;
+  }
+);
 </script>
 <style></style>

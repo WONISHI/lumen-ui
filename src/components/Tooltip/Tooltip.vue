@@ -37,7 +37,9 @@ const popperContainerNode = ref<HTMLElement>();
 let popperInstance: null | Instance = null;
 let events: Record<string, any> = reactive({});
 let outerEvents: Record<string, any> = reactive({});
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let openTimes = 0;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let closeTimes = 0;
 const popperOptions = computed(() => {
   return {
