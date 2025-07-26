@@ -24,7 +24,14 @@
         <input
           class="lu-input__inner"
           :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
+          ref="inputRef"
+          v-bind="attrs"
           :disabled="disabled"
+          :readonly="readonly"
+          :autocomplete="autocomplete"
+          :placeholder="placeholder"
+          :autofocus="autofucus"
+          :form="form"
           v-model="innerValue"
           @input="handleInput"
           @change="handleChange"
@@ -49,7 +56,14 @@
     <template v-else>
       <textarea
         class="lu-input__wrapper"
+        ref="inputRef"
+        v-bind="attrs"
         :disabled="disabled"
+        :readonly="readonly"
+        :autocomplete="autocomplete"
+        :placeholder="placeholder"
+        :autofocus="autofucus"
+        :form="form"
         v-model="innerValue"
         @input="handleInput"
         @change="handleChange"
@@ -60,14 +74,17 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, useAttrs } from "vue";
 import type { InputProps, InputEmits } from "./types";
 import Icon from "../Icon/Icon.vue";
+import type { Ref } from "vue";
 defineOptions({
   name: "LuInput",
+  inheritAttrs: false,
 });
 const props = withDefaults(defineProps<InputProps>(), {
   type: "text",
+  autocomplete: "off",
 });
 const showClear = computed(
   () => props.clearable && !props.disabled && !!innerValue.value && isFocus.value
@@ -78,7 +95,9 @@ const showPasswordArea = computed(
 const isFocus = ref(false);
 const passwordVisible = ref(false);
 const emits = defineEmits<InputEmits>();
+const attrs = useAttrs();
 const innerValue = ref(props.modelValue);
+const inputRef = ref() as Ref<HTMLInputElement>;
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
@@ -110,5 +129,8 @@ watch(
     innerValue.value = newValue;
   }
 );
+defineExpose({
+    ref: inputRef,
+})
 </script>
 <style></style>
