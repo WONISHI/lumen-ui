@@ -38,9 +38,19 @@
           @focus="handleFocus"
           @blur="handleBlur"
         />
-        <span v-if="$slots.suffix || showClear || showPasswordArea" class="lu-input__suffix">
+        <span
+          v-if="$slots.suffix || showClear || showPasswordArea"
+          class="lu-input__suffix"
+          @click="keepFocus"
+        >
           <slot name="suffix"></slot>
-          <Icon icon="circle-xmark" v-if="showClear" class="lu-input__clear" @click="clear"></Icon>
+          <Icon
+            icon="circle-xmark"
+            v-if="showClear"
+            class="lu-input__clear"
+            @click="clear"
+            @mousedown.prevent="Noop"
+          ></Icon>
           <Icon
             v-if="showPasswordArea"
             :icon="passwordVisible ? 'eye' : 'eye-slash'"
@@ -74,7 +84,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, watch, computed, useAttrs } from "vue";
+import { ref, watch, computed, useAttrs, nextTick } from "vue";
 import type { InputProps, InputEmits } from "./types";
 import Icon from "../Icon/Icon.vue";
 import type { Ref } from "vue";
@@ -98,6 +108,11 @@ const emits = defineEmits<InputEmits>();
 const attrs = useAttrs();
 const innerValue = ref(props.modelValue);
 const inputRef = ref() as Ref<HTMLInputElement>;
+const Noop = () => {};
+const keepFocus = async () => {
+  await nextTick();
+  inputRef.value?.focus();
+};
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
@@ -130,7 +145,7 @@ watch(
   }
 );
 defineExpose({
-    ref: inputRef,
-})
+  ref: inputRef,
+});
 </script>
 <style></style>

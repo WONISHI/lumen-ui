@@ -78,7 +78,7 @@
   /* border */
   --lu-border-width: 1px;
   --lu-border-style: solid;
-  --lu-border-color-hover: var(—lu-text-color-disabled);
+  --lu-border-color-hover: var(--lu-text-color-disabled);
   --lu-border: var(--lu-border-width) var(--lu-border-style) var(--lu-border-color);
   --lu-border-radius-base: 4px;
   --lu-border-radius-small: 2px;
