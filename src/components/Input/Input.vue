@@ -23,21 +23,21 @@
         </span>
         <input
           class="lu-input__inner"
-          :type="type"
+          :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           :disabled="disabled"
           v-model="innerValue"
           @input="handleInput"
           @focus="handleFocus"
           @blur="handleBlur"
         />
-        <span v-if="$slots.suffix || showClear" class="lu-input__suffix">
+        <span v-if="$slots.suffix || showClear || showPasswordArea" class="lu-input__suffix">
           <slot name="suffix"></slot>
+          <Icon icon="circle-xmark" v-if="showClear" class="lu-input__clear" @click="clear"></Icon>
           <Icon
-            icon="circle-xmark"
-            v-if="showClear"
-            class="lu-input__clear"
-            @click="clear"
-          ></Icon>
+            v-if="showPasswordArea"
+            :icon="passwordVisible ? 'eye' : 'eye-slash'"
+            class="lu-input__password" 
+            @click="togglePasswordVisible" />
         </span>
       </div>
       <div v-if="$slots.append" class="lu-input__append">
@@ -69,7 +69,11 @@ const props = withDefaults(defineProps<InputProps>(), {
 const showClear = computed(
   () => props.clearable && !props.disabled && !!innerValue.value && isFocus.value
 );
+const showPasswordArea = computed(
+  () => props.showPassword && !props.disabled && !!innerValue.value
+);
 const isFocus = ref(false);
+const passwordVisible = ref(false);
 const emits = defineEmits<InputEmits>();
 const innerValue = ref(props.modelValue);
 const handleInput = () => {
@@ -81,10 +85,13 @@ const handleFocus = () => {
 const handleBlur = () => {
   isFocus.value = false;
 };
-const clear=()=>{
-    innerValue.value=''
-    emits("update:modelValue", innerValue.value);
+const togglePasswordVisible = () => {
+  passwordVisible.value = !passwordVisible.value;
 }
+const clear = () => {
+  innerValue.value = "";
+  emits("update:modelValue", innerValue.value);
+};
 watch(
   () => props.modelValue,
   (newValue) => {
