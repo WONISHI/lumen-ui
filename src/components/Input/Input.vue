@@ -27,6 +27,7 @@
           :disabled="disabled"
           v-model="innerValue"
           @input="handleInput"
+          @change="handleChange"
           @focus="handleFocus"
           @blur="handleBlur"
         />
@@ -36,8 +37,9 @@
           <Icon
             v-if="showPasswordArea"
             :icon="passwordVisible ? 'eye' : 'eye-slash'"
-            class="lu-input__password" 
-            @click="togglePasswordVisible" />
+            class="lu-input__password"
+            @click="togglePasswordVisible"
+          />
         </span>
       </div>
       <div v-if="$slots.append" class="lu-input__append">
@@ -50,6 +52,7 @@
         :disabled="disabled"
         v-model="innerValue"
         @input="handleInput"
+        @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
       ></textarea>
@@ -78,19 +81,28 @@ const emits = defineEmits<InputEmits>();
 const innerValue = ref(props.modelValue);
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
+  emits("input", innerValue.value);
 };
-const handleFocus = () => {
+const handleChange = () => {
+  emits("change", innerValue.value);
+};
+const handleFocus = (event: FocusEvent) => {
   isFocus.value = true;
+  emits("focus", event);
 };
-const handleBlur = () => {
+const handleBlur = (event: FocusEvent) => {
   isFocus.value = false;
+  emits("blur", event);
 };
 const togglePasswordVisible = () => {
   passwordVisible.value = !passwordVisible.value;
-}
+};
 const clear = () => {
   innerValue.value = "";
   emits("update:modelValue", innerValue.value);
+  emits("clear");
+  emits("input", "");
+  emits("change", "");
 };
 watch(
   () => props.modelValue,
