@@ -55,6 +55,7 @@ export default defineConfig({
         text: "Data展示组件",
         items: [
           { text: "Tooltip 文字提示", link: "/components/tooltip" },
+          { text: "Grid 网格", link: "/components/grid" },
         ],
       },
     ],

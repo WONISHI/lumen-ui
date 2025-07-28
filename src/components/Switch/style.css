@@ -18,6 +18,8 @@
     height: 0;
     opacity: 0;
     margin: 0;
+    /* 与focus的区别是什么*/
+    /* 表示选择当前元素的兄弟元素*/
     &:focus-visible {
       & ~ .lu-switch__core {
         outline: 2px solid var(--lu-switch-on-color);
