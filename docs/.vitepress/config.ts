@@ -38,18 +38,23 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: "Basic",
+        text: "Basic基础组件",
         items: [
-          { text: "Button", link: "/components/button" },
-          { text: "Icon", link: "/components/Icon" },
+          { text: "Button 按钮", link: "/components/button" },
+          { text: "Icon 图标", link: "/components/Icon" },
         ],
       },
       {
         text: "Form表单组件",
         items: [
-          { text: "Select", link: "/components/select" },
-          { text: "Input", link: "/components/input" },
-          { text: "Switch", link: "/components/switch" },
+          { text: "Select 选择器", link: "/components/select" },
+          { text: "Input 输入框", link: "/components/input" },
+          { text: "Switch 开关", link: "/components/switch" },
+        ],
+      },{
+        text: "Data展示组件",
+        items: [
+          { text: "Tooltip 文字提示", link: "/components/tooltip" },
         ],
       },
     ],
