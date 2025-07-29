@@ -2,7 +2,11 @@
 title: Icon | lumen-ui
 description: Icon 组件的文档
 ---
+# Icon 图标
 
-## 基础用法
+## 图标集合
 
-<preview path="../demo/Icon/Basic.vue" title="基本用法" description="基本用法"></preview>
+<script setup>
+import System from "../demo/Icon/System.vue"
+</script>
+<System />
