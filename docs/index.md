@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: brand
       text: 开始使用
-      link: /markdown-examples
+      link: /components/button
     - theme: alt
       text: 开始学习
-      link: /markdown-examples
+      link: /components/button
 
 features:
   - title: “现代”
