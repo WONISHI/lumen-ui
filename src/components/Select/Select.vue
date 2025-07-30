@@ -1,7 +1,12 @@
 <template>
   <div class="lu-select" :class="{ 'is-disabled': disabled }" @click="toggleDropdown">
-    <Tooltip ref="tooltipRef" placement="bottom-start" :manual="true">
-      <Input v-model="states.inputValue" :disabled="disabled" :placeholder="placeholder" />
+    <Tooltip
+      ref="tooltipRef"
+      placement="bottom-start"
+      :manual="true"
+      :popperOptions="popperOptions"
+    >
+      <Input v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder" />
       <template #content>
         <ul class="lu-select__item">
           <template v-for="(item, index) in options" :key="index">
@@ -9,7 +14,7 @@
               class="lu-select__menu-item"
               :class="{
                 'is-diabled': disabled,
-                'is-active': item.value === states.selectedOption?.value,
+                'is-selected': item.value === states.selectedOption?.value,
               }"
               :id="`select-item-${item.value}`"
               @click.stop="itemSelect(item)"
@@ -45,6 +50,25 @@ const states = reactive<SelectState>({
   inputValue: initialOption ? initialOption.label : "",
   selectedOption: initialOption,
 });
+const popperOptions: any = {
+  modifiers: [
+    {
+      name: "offset",
+      options: {
+        offset: [0, 9],
+      },
+    },
+    {
+      name: "sameWidth",
+      enabled: true,
+      fn: ({ state }: { state: any }) => {
+        state.styles.popper.width = `${state.rects.reference.width}px`;
+      },
+      phase: "beforeWrite",
+      requires: ["computeStyles"],
+    },
+  ],
+};
 const controlDropdown = (show: boolean) => {
   if (show) {
     tooltipRef.value?.show();

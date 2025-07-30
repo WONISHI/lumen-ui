@@ -1,0 +1,67 @@
+.lu-select {
+  --lu-select-item-hover-bg-color: var(--lu-fill-color-light);
+  --lu-select-item-font-size: var(--lu-font-size-base);
+  --lu-select-item-font-color: var(--lu-text-color-regular);
+  --lu-select-item-selected-font-color: var(--lu-color-primary);
+  --lu-select-item-disabled-font-color: var(--lu-text-color-placeholder);
+  --lu-select-input-focus-border-color: var(--lu-color-primary);
+}
+
+.lu-select {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 32px;
+  .lu-tooltip .lu-tooltip__popper {
+    padding: 0;
+  }
+  .lu-input.is-focus .lu-input__wrapper {
+    box-shadow: 0 0 0 1px var(--lu-select-input-focus-border-color) inset!important
+  }
+  .lu-input {
+    .header-angle {
+      transition: transform var(--lu-transition-duration);
+      &.is-active {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .lu-input__inner {
+    cursor: pointer;
+  }
+  .lu-select__menu {
+    list-style: none;
+    margin: 6px 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .lu-select__menu-item { 
+    margin: 0;
+    font-size: var(--lu-select-item-font-size);
+    padding: 0 32px 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--lu-select-item-font-color);
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--lu-select-item-hover-bg-color);
+    }
+    &.is-selected {
+      color: var(--lu-select-item-selected-font-color);
+      font-weight: 700;    
+    }
+    &.is-disabled {
+      color: var(--lu-select-item-disabled-font-color);
+      cursor: not-allowed;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+  }
+}
