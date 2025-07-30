@@ -15,3 +15,8 @@ description: Tooltip 组件的文档
 由 placement 属性决定展示效果： placement属性值为：[方向]-[对齐位置]；四个方向：top、left、right、bottom；三种对齐位置：start, end，默认为空。
 
 <preview path="../demo/Tooltip/Placement.vue" title="基础选择器" description="Select 基础选择器"></preview>
+
+## 触发方式
+由 trigger 属性决定触发方式： hover | click, 默认为 hover
+
+<preview path="../demo/Tooltip/Target.vue" title="基础选择器" description="Select 基础选择器"></preview>
