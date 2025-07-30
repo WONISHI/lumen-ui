@@ -5,6 +5,7 @@
       placement="bottom-start"
       :manual="true"
       :popperOptions="popperOptions"
+      @click-outside="controlDropdown(false)"
     >
       <Input v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder" />
       <template #content>

@@ -44,13 +44,13 @@ let closeTimes = 0;
 const popperOptions = computed(() => {
   return {
     placement: props.placement,
-    modifiers:[
-        {
-            name: "offset",
-            options: {
-                offset: [0, 9],
-            },
-        }
+    modifiers: [
+      {
+        name: "offset",
+        options: {
+          offset: [0, 9],
+        },
+      },
     ],
     ...props.popperOptions,
   };
@@ -79,6 +79,9 @@ useClickOutside(popperContainerNode, () => {
   if (props.trigger === "click" && isOpen.value && !props.manual) {
     closeFinal();
   }
+  if (isOpen.value) {
+    emits("click-outside", true);
+  }
 });
 const attachEvents = () => {
   if (props.trigger === "hover") {
@@ -91,14 +94,14 @@ const attachEvents = () => {
 
 const openDebounce = debounce(open, props.openDelay);
 const closeDebounce = debounce(close, props.closeDelay);
-const openFinal=()=>{
-    closeDebounce.cancel();
-    openDebounce();
-}
-const closeFinal=()=>{
-    openDebounce.cancel();
-    closeDebounce();
-}
+const openFinal = () => {
+  closeDebounce.cancel();
+  openDebounce();
+};
+const closeFinal = () => {
+  openDebounce.cancel();
+  closeDebounce();
+};
 
 if (!props.manual) {
   attachEvents();
