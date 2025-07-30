@@ -7,7 +7,17 @@
       :popperOptions="popperOptions"
       @click-outside="controlDropdown(false)"
     >
-      <Input v-model="states.inputValue" readonly :disabled="disabled" :placeholder="placeholder" />
+      <Input
+        ref="inputRef"
+        v-model="states.inputValue"
+        readonly
+        :disabled="disabled"
+        :placeholder="placeholder"
+      >
+      <template #suffix>
+        <Icon icon="angle-down" class="header-angle" :class="{ 'is-active': isDropdownShow }"></Icon>
+      </template>
+    </Input>
       <template #content>
         <ul class="lu-select__item">
           <template v-for="(item, index) in options" :key="index">
@@ -35,6 +45,8 @@ import type { Ref } from "vue";
 import type { TooltipInstance } from "../Tooltip/types";
 import Tooltip from "../Tooltip/Tooltip.vue";
 import Input from "../Input/Input.vue";
+import Icon from "../Icon/Icon.vue";
+import type { InputInstance } from "../Input/types";
 defineOptions({
   name: "LuSelect",
 });
@@ -45,6 +57,7 @@ const findOptions = (value: string) => {
 const props = defineProps<SelectProps>();
 const emits = defineEmits<SelectEmits>();
 const tooltipRef = ref() as Ref<TooltipInstance>;
+const inputRef = ref() as Ref<InputInstance>;
 const isDropdownShow = ref(false);
 const initialOption = findOptions(props.modelValue);
 const states = reactive<SelectState>({
@@ -94,6 +107,7 @@ const itemSelect = (e: SelectOption) => {
   emits("change", e.value);
   emits("update:modelValue", e.value);
   controlDropdown(false);
+  inputRef.value?.ref.focus();
 };
 </script>
 <style lang="scss" scoped></style>
