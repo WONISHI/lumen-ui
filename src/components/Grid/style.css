@@ -4,8 +4,8 @@
   flex-direction: column;
   .lu-grid__row {
     display: flex;
-     .lu-grid__col {
-        border: var(--lu-grid-border);
-      }
+    .lu-grid__col {
+      border: var(--lu-grid-border);
+    }
   }
 }

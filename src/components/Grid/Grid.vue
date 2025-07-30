@@ -1,7 +1,12 @@
 <template>
   <div class="lu-grid">
     <div class="lu-grid__row" v-for="(row, rowIndex) in innerValue" :key="rowIndex">
-      <div class="lu-grid__col" v-for="(item, colIndex) in row" :key="colIndex" :style="{ gap: props.gap + 'px'}">
+      <div
+        class="lu-grid__col"
+        v-for="(item, colIndex) in row"
+        :key="colIndex"
+        :style="{ gap: props.gap + 'px' }"
+      >
         <slot :item="item" :rowIndex="rowIndex"></slot>
       </div>
     </div>
