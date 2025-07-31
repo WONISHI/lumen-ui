@@ -1,5 +1,11 @@
 <template>
-  <div class="lu-select" :class="{ 'is-disabled': disabled }" @click="toggleDropdown">
+  <div
+    class="lu-select"
+    :class="{ 'is-disabled': disabled }"
+    @click="toggleDropdown"
+    @mouseenter="states.mouseHover = true"
+    @mouseleave="states.mouseHover = false"
+  >
     <Tooltip
       ref="tooltipRef"
       placement="bottom-start"
@@ -14,10 +20,16 @@
         :disabled="disabled"
         :placeholder="placeholder"
       >
-      <template #suffix>
-        <Icon icon="angle-down" class="header-angle" :class="{ 'is-active': isDropdownShow }"></Icon>
-      </template>
-    </Input>
+        <template #suffix>
+          <Icon icon="circle-xmark" v-if="showClearIcon" class="lu-input__clear" />
+          <Icon
+            v-else
+            icon="angle-down"
+            class="header-angle"
+            :class="{ 'is-active': isDropdownShow }"
+          ></Icon>
+        </template>
+      </Input>
       <template #content>
         <ul class="lu-select__item">
           <template v-for="(item, index) in options" :key="index">
@@ -40,7 +52,7 @@
 </template>
 <script lang="ts" setup>
 import type { SelectProps, SelectEmits, SelectOption, SelectState } from "./types";
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 import type { Ref } from "vue";
 import type { TooltipInstance } from "../Tooltip/types";
 import Tooltip from "../Tooltip/Tooltip.vue";
@@ -63,6 +75,7 @@ const initialOption = findOptions(props.modelValue);
 const states = reactive<SelectState>({
   inputValue: initialOption ? initialOption.label : "",
   selectedOption: initialOption,
+  mouseHover: false,
 });
 const popperOptions: any = {
   modifiers: [
@@ -92,6 +105,15 @@ const controlDropdown = (show: boolean) => {
   isDropdownShow.value = show;
   emits("visible-change", show);
 };
+const showClearIcon = computed(() => {
+  //hover上去
+  // props.clearable为true
+  // 必须要有选择过选项
+  // input的值不为空
+  return (
+    props.clearable && states.mouseHover && states.selectedOption && states.inputValue.trim() !== ""
+  );
+});
 const toggleDropdown = () => {
   if (props.disabled) return;
   if (isDropdownShow.value) {
