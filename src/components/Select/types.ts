@@ -1,3 +1,4 @@
+import type { VNode } from "vue";
 export interface SelectOption {
   label: string;
   value: string;
@@ -10,6 +11,7 @@ export interface SelectProps {
   placeholder?: string;
   disabled?: boolean;
   clearable?: boolean;
+  renderLabel?: ReaderLabelFunc;
 }
 
 export interface SelectState {
@@ -17,6 +19,8 @@ export interface SelectState {
   selectedOption: SelectOption | null;
   mouseHover: boolean;
 }
+
+export type ReaderLabelFunc = (option: SelectOption) => VNode;
 
 export interface SelectEmits {
   (e: "change", value: string): void;
