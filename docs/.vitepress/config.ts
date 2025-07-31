@@ -13,6 +13,7 @@ const vueMacrosPlugins: any = await VueMacros.vite({
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "lumen-ui",
+  cleanUrls: true,
   description: "A VitePress Site",
   vite: {
     plugins: [...vueMacrosPlugins],
