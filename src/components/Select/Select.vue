@@ -21,7 +21,13 @@
         :placeholder="placeholder"
       >
         <template #suffix>
-          <Icon icon="circle-xmark" v-if="showClearIcon" class="lu-input__clear" />
+          <Icon
+            icon="circle-xmark"
+            v-if="showClearIcon"
+            class="lu-input__clear"
+            @mousedown.prevent="Noop"
+            @click.stop="onClear"
+          />
           <Icon
             v-else
             icon="angle-down"
@@ -114,6 +120,14 @@ const showClearIcon = computed(() => {
     props.clearable && states.mouseHover && states.selectedOption && states.inputValue.trim() !== ""
   );
 });
+const onClear = () => {
+  states.selectedOption = null;
+  states.inputValue = "";
+  emits("clear");
+  emits("change", "");
+  emits("update:modelValue", "");
+};
+const Noop = () => {};
 const toggleDropdown = () => {
   if (props.disabled) return;
   if (isDropdownShow.value) {

@@ -2,12 +2,12 @@
   "hash": "06c80b88",
   "configHash": "4a77fa38",
   "lockfileHash": "2255626b",
-  "browserHash": "ef0b9896",
+  "browserHash": "7f96e345",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "c2ac533b",
+      "fileHash": "338b4546",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
@@ -19,13 +19,13 @@
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "4002073d",
+      "fileHash": "f54edf88",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "15ec44f5",
+      "fileHash": "c9a49473",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
@@ -43,7 +43,7 @@
     "@fortawesome/fontawesome-svg-core": {
       "src": "../../../../node_modules/@fortawesome/fontawesome-svg-core/index.mjs",
       "file": "@fortawesome_fontawesome-svg-core.js",
-      "fileHash": "d4808ed1",
+      "fileHash": "4145a77a",
       "needsInterop": false
     },
     "@fortawesome/free-solid-svg-icons": {
@@ -55,7 +55,7 @@
     "@vitepress-demo-preview/component": {
       "src": "../../../../node_modules/@vitepress-demo-preview/component/dist/preview-component.js",
       "file": "@vitepress-demo-preview_component.js",
-      "fileHash": "1b0162d6",
+      "fileHash": "dafcacd5",
       "needsInterop": false
     },
     "lodash-es": {
@@ -67,16 +67,22 @@
     "@fortawesome/vue-fontawesome": {
       "src": "../../../../node_modules/@fortawesome/vue-fontawesome/index.es.js",
       "file": "@fortawesome_vue-fontawesome.js",
-      "fileHash": "040c5a13",
+      "fileHash": "2d4a95b4",
+      "needsInterop": false
+    },
+    "@popperjs/core": {
+      "src": "../../../../node_modules/@popperjs/core/lib/index.js",
+      "file": "@popperjs_core.js",
+      "fileHash": "ed107ae0",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-3GYA4YLH": {
-      "file": "chunk-3GYA4YLH.js"
-    },
     "chunk-3IJK52MP": {
       "file": "chunk-3IJK52MP.js"
+    },
+    "chunk-3GYA4YLH": {
+      "file": "chunk-3GYA4YLH.js"
     },
     "chunk-DDXJJ377": {
       "file": "chunk-DDXJJ377.js"
