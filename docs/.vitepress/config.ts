@@ -23,11 +23,15 @@ export default defineConfig({
       },
     },
   },
+  head: [["link", { rel: "icon", href: "/logo.svg" }]],
+  ignoreDeadLinks: true,
   markdown: {
     config(md) {
       md.use(containerPreview);
       md.use(componentPreview);
     },
+    // 是否在代码块中启用行号
+    lineNumbers: true,
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -51,7 +55,8 @@ export default defineConfig({
           { text: "Input 输入框", link: "/components/input" },
           { text: "Switch 开关", link: "/components/switch" },
         ],
-      },{
+      },
+      {
         text: "Data展示组件",
         items: [
           { text: "Tooltip 文字提示", link: "/components/tooltip" },

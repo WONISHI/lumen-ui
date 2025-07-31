@@ -9,6 +9,7 @@ export interface SelectProps {
   options: SelectOption[];
   placeholder?: string;
   disabled?: boolean;
+  clearable?: boolean;
 }
 
 export interface SelectState {

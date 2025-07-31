@@ -6,6 +6,9 @@ hero:
   name: "lumen-ui"
   text: "基于Vue 3的UI组件库"
   tagline: 最新 Vue3.3 + TS4 高仿 ElementPlus 打造自己的组件库
+  image:
+    src: /bg.png
+    alt: 背景图片
   actions:
     - theme: brand
       text: 开始使用
