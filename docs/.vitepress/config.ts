@@ -15,6 +15,7 @@ export default defineConfig({
   title: "lumen-ui",
   cleanUrls: false,
   description: "A VitePress Site",
+  head: [["link", { rel: "icon", href: "/logo.svg" }]],
   vite: {
     plugins: [...vueMacrosPlugins],
     resolve: {
@@ -23,7 +24,6 @@ export default defineConfig({
       },
     },
   },
-  head: [["link", { rel: "icon", href: "/logo.svg" }]],
   ignoreDeadLinks: true,
   markdown: {
     config(md) {
