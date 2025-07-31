@@ -16,9 +16,10 @@
       <Input
         ref="inputRef"
         v-model="states.inputValue"
-        readonly
+        :readonly="!filterable"
         :disabled="disabled"
         :placeholder="placeholder"
+        @input="onFilter"
       >
         <template #suffix>
           <Icon
@@ -38,7 +39,7 @@
       </Input>
       <template #content>
         <ul class="lu-select__item">
-          <template v-for="(item, index) in options" :key="index">
+          <template v-for="(item, index) in filteredOptions" :key="index">
             <li
               class="lu-select__menu-item"
               :class="{
@@ -58,13 +59,14 @@
 </template>
 <script lang="ts" setup>
 import type { SelectProps, SelectEmits, SelectOption, SelectState } from "./types";
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 import type { Ref } from "vue";
 import type { TooltipInstance } from "../Tooltip/types";
 import Tooltip from "../Tooltip/Tooltip.vue";
 import Input from "../Input/Input.vue";
 import Icon from "../Icon/Icon.vue";
 import RenderVnode from "../Common/RenderVnode";
+import { isFunction } from "lodash-es";
 import type { InputInstance } from "../Input/types";
 defineOptions({
   name: "LuSelect",
@@ -102,6 +104,26 @@ const popperOptions: any = {
       requires: ["computeStyles"],
     },
   ],
+};
+const filteredOptions = ref(props.options);
+watch(
+  () => props.options,
+  (newVal) => {
+    filteredOptions.value = newVal;
+  }
+);
+const generateFilteredOptions = (searchValue: string) => {
+  if (!props.filterable) return;
+  if (props.filterMethod && isFunction(props.filterMethod)) {
+    filteredOptions.value = props.filterMethod(searchValue);
+  } else {
+    filteredOptions.value = props.options.filter((option) => {
+      return option.label.includes(searchValue);
+    });
+  }
+};
+const onFilter = () => {
+  generateFilteredOptions(states.inputValue);
 };
 const controlDropdown = (show: boolean) => {
   if (show) {

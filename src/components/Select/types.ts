@@ -12,6 +12,8 @@ export interface SelectProps {
   disabled?: boolean;
   clearable?: boolean;
   renderLabel?: ReaderLabelFunc;
+  filterable?: boolean;
+  filterMethod?: CustomFilterFunc;
 }
 
 export interface SelectState {
@@ -21,6 +23,7 @@ export interface SelectState {
 }
 
 export type ReaderLabelFunc = (option: SelectOption) => VNode;
+export type CustomFilterFunc = (value: string) => SelectOption[];
 
 export interface SelectEmits {
   (e: "change", value: string): void;
