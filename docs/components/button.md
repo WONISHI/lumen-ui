@@ -24,17 +24,44 @@ description: Button 组件的文档
 <preview path="../demo/Button/Icon.vue" title="基础用法" description="Button 组件的基础用法"></preview>
 
 
-### Button Attributes
+## 加载状态按钮
+通过设置 loading 属性为 true 来显示正在加载的状态。
 
-| Name        | Description                            | Type                                                             | Default |
-| ----------- | -------------------------------------- | ---------------------------------------------------------------- | ------- |
-| size        | button size                            | `enum` - `'large'\| 'small'`                                     | —       |
-| type        | button type                            | `enum` - `'primary'\| 'success'\| 'warning'\| 'danger'\| 'info'` | —       |
-| plain       | determine whether it's a plain button  | `boolean`                                                        | false   |
-| round       | determine whether it's a round button  | `boolean`                                                        | false   |
-| circle      | determine whether it's a circle button | `boolean`                                                        | false   |
-| loading     | determine whether it's loading         | `boolean`                                                        | false   |
-| disabled    | disable the button                     | `boolean`                                                        | false   |
-| icon        | icon component                         | `string`                                                         | —       |
-| autofocus   | same as native button's `autofocus`    | `boolean`                                                        | false   |
-| native-type | same as native button's `type`         | `enum` - `'button'\| 'submit'\| 'reset'`                         | button  |
+<preview path="../demo/Button/Loading.vue" title="基础用法" description="加载状态按钮"></preview>
+
+
+
+## 不同大小的按钮
+通过设置 size 属性为 small | large 来调整图标的大小。
+
+<preview path="../demo/Button/Size.vue" title="基础用法" description="加载状态按钮"></preview>
+
+
+# Button API
+
+## Button Attributes
+
+| 属性名       | 说明                            | 类型                                                           | 默认值 |
+| ----------- | ------------------------------- | -------------------------------------------------------------- | ------- |
+| size        | 尺寸                            | `enum` - `'large'\| 'small'`                                     | —       |
+| type        | 按钮类型，在设置color时，后者优先。  | `enum` - `'primary'\| 'success'\| 'warning'\| 'danger'\| 'info'` | —       |
+| plain       | 是否为朴素按钮.                   | `boolean`                                                        | false   |
+| round       | 是否为圆角按钮.                   | `boolean`                                                        | false   |
+| circle      | 是否为圆形按钮.                   | `boolean`                                                        | false   |
+| loading     | 是否为加载中状态                  | `boolean`                                                        | false   |
+| disabled    | 按钮是否为禁用状态                 | `boolean`                                                        | false   |
+| icon        | 图标组件                         | `string`                                                         | —       |
+| autofocus   | 原生 autofocus 属性              | `boolean`                                                        | false   |
+| native-type | 原生 type 属性                   | `enum` - `'button'\| 'submit'\| 'reset'`                         | button  |
+
+## Button Slots
+
+| 插槽名       | 说明                                                                                                          |
+| ------------ | ----------------------------------------------------------------------------------------------------------- | 
+| default        | 自定义默认内容                                                                                               | 
+
+## Button Exposes
+
+| 属性名 | 说明 | 类型 |
+| -----------|------------------------------| --------------------------------------------------------------------------|
+| ref | 按钮html 元素 | object |
