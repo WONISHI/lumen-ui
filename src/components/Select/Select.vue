@@ -18,7 +18,7 @@
         v-model="states.inputValue"
         :readonly="!filterable"
         :disabled="disabled"
-        :placeholder="placeholder"
+        :placeholder="filteredPlaceholder"
         @input="onFilter"
       >
         <template #suffix>
@@ -81,6 +81,11 @@ const tooltipRef = ref() as Ref<TooltipInstance>;
 const inputRef = ref() as Ref<InputInstance>;
 const isDropdownShow = ref(false);
 const initialOption = findOptions(props.modelValue);
+const filteredPlaceholder = computed(() => {
+  return props.filterable && states.selectedOption && isDropdownShow.value
+    ? states.selectedOption.label
+    : props.placeholder;
+});
 const states = reactive<SelectState>({
   inputValue: initialOption ? initialOption.label : "",
   selectedOption: initialOption,
@@ -127,9 +132,15 @@ const onFilter = () => {
 };
 const controlDropdown = (show: boolean) => {
   if (show) {
+    if (props.filterable && states.selectedOption) {
+      states.inputValue = "";
+    }
     tooltipRef.value?.show();
   } else {
     tooltipRef.value?.hide();
+    if (props.filterable) {
+      states.inputValue = states.selectedOption ? states.selectedOption.label : "";
+    }
   }
   isDropdownShow.value = show;
   emits("visible-change", show);
