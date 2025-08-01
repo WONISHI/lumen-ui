@@ -16,7 +16,7 @@
       <Input
         ref="inputRef"
         v-model="states.inputValue"
-        :readonly="!filterable"
+        :readonly="!filterable || !isDropdownShow"
         :disabled="disabled"
         :placeholder="filteredPlaceholder"
         @input="onFilter"
@@ -125,6 +125,7 @@ const generateFilteredOptions = (searchValue: string) => {
     filteredOptions.value = props.options.filter((option) => {
       return option.label.includes(searchValue);
     });
+    console.log(filteredOptions.value,searchValue);
   }
 };
 const onFilter = () => {
@@ -135,9 +136,14 @@ const controlDropdown = (show: boolean) => {
     if (props.filterable && states.selectedOption) {
       states.inputValue = "";
     }
+    // 进行一次默认选项的生成
+    if(props.filterable){
+      generateFilteredOptions(states.inputValue);
+    }
     tooltipRef.value?.show();
   } else {
     tooltipRef.value?.hide();
+    // blur时候将之前的值回灌到input中
     if (props.filterable) {
       states.inputValue = states.selectedOption ? states.selectedOption.label : "";
     }
