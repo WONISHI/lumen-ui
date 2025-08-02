@@ -20,6 +20,7 @@
         :disabled="disabled"
         :placeholder="filteredPlaceholder"
         @input="debounceFilter"
+        @keydown="handleKeydown"
       >
         <template #suffix>
           <Icon
@@ -84,7 +85,7 @@ const findOptions = (value: string) => {
 const props = withDefaults(defineProps<SelectProps>(), {
   options: () => [],
 });
-const timeout = computed(() => props.remote ? 300 : 0);
+const timeout = computed(() => (props.remote ? 300 : 0));
 const emits = defineEmits<SelectEmits>();
 const tooltipRef = ref() as Ref<TooltipInstance>;
 const inputRef = ref() as Ref<InputInstance>;
@@ -170,6 +171,20 @@ const controlDropdown = (show: boolean) => {
   }
   isDropdownShow.value = show;
   emits("visible-change", show);
+};
+const handleKeydown = (e: KeyboardEvent) => {
+  switch (e.key) {
+    case "Enter":
+      toggleDropdown();
+      break;
+    case "Escape":
+      if (!isDropdownShow.value) {
+        controlDropdown(false);
+      }
+      break;
+    default:
+      break;
+  }
 };
 const showClearIcon = computed(() => {
   //hover上去

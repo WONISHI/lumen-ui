@@ -55,24 +55,24 @@ const states = [
   "Wyoming",
 ];
 
-const remoteFilter = (query) => {
-  return new Promise((resolve) => {
-    if (query) {
-      setTimeout(() => {
-        const options = states
-          .filter((item) => {
-            return item.toLowerCase().includes(query.toLowerCase());
-          })
-          .map((label) => {
-            return { label, value: label };
-          });
-        resolve(options);
-      }, 500);
-    } else {
-      resolve([]);
-    }
-  });
-};
+// const remoteFilter = (query) => {
+//   return new Promise((resolve) => {
+//     if (query) {
+//       setTimeout(() => {
+//         const options = states
+//           .filter((item) => {
+//             return item.toLowerCase().includes(query.toLowerCase());
+//           })
+//           .map((label) => {
+//             return { label, value: label };
+//           });
+//         resolve(options);
+//       }, 500);
+//     } else {
+//       resolve([]);
+//     }
+//   });
+// };
 
 const handleFetch = (query) => {
   if (!query) return;
