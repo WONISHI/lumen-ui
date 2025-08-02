@@ -84,10 +84,15 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, watch, computed, useAttrs, nextTick } from "vue";
+import { ref, watch, computed, useAttrs, nextTick, inject } from "vue";
 import type { InputProps, InputEmits } from "./types";
 import Icon from "../Icon/Icon.vue";
 import type { Ref } from "vue";
+import { formItemContextKey } from "../Form/types";
+const formItemContext = inject(formItemContextKey);
+const runValidation = () => {
+  formItemContext?.validate()
+};
 defineOptions({
   name: "LuInput",
   inheritAttrs: false,
@@ -116,6 +121,7 @@ const keepFocus = async () => {
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
+  runValidation();
 };
 const handleChange = () => {
   emits("change", innerValue.value);

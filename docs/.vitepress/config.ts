@@ -65,6 +65,7 @@ export default defineConfig({
           { text: "Select 选择器", link: "/components/select" },
           { text: "Input 输入框", link: "/components/input" },
           { text: "Switch 开关", link: "/components/switch" },
+          { text: "Form 表单", link: "/components/form" },
         ],
       },
       {
