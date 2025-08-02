@@ -1,5 +1,5 @@
 ---
-title: Icon | lumen-ui
+title: Icon
 description: Icon 组件的文档
 ---
 # Icon 图标

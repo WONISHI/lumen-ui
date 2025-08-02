@@ -1,5 +1,5 @@
 ---
-title: Button | lumen-ui
+title: Button
 description: Button 组件的文档
 ---
 

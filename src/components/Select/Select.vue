@@ -19,7 +19,7 @@
         :readonly="!filterable || !isDropdownShow"
         :disabled="disabled"
         :placeholder="filteredPlaceholder"
-        @input="onFilter"
+        @input="debounceFilter"
       >
         <template #suffix>
           <Icon
@@ -38,7 +38,13 @@
         </template>
       </Input>
       <template #content>
-        <ul class="lu-select__item">
+        <div class="lu-select__loading" v-if="states.loading">
+          <Icon icon="spinner" spin />
+        </div>
+        <div class="lu-select__nodata" v-else-if="filterable && filteredOptions.length === 0">
+          no matching data
+        </div>
+        <ul class="lu-select__item" v-else>
           <template v-for="(item, index) in filteredOptions" :key="index">
             <li
               class="lu-select__menu-item"
@@ -66,7 +72,7 @@ import Tooltip from "../Tooltip/Tooltip.vue";
 import Input from "../Input/Input.vue";
 import Icon from "../Icon/Icon.vue";
 import RenderVnode from "../Common/RenderVnode";
-import { isFunction } from "lodash-es";
+import { isFunction, debounce } from "lodash-es";
 import type { InputInstance } from "../Input/types";
 defineOptions({
   name: "LuSelect",
@@ -75,7 +81,10 @@ const findOptions = (value: string) => {
   const option = props.options.find((item) => item.value === value);
   return option ? option : null;
 };
-const props = defineProps<SelectProps>();
+const props = withDefaults(defineProps<SelectProps>(), {
+  options: () => [],
+});
+const timeout = computed(() => props.remote ? 300 : 0);
 const emits = defineEmits<SelectEmits>();
 const tooltipRef = ref() as Ref<TooltipInstance>;
 const inputRef = ref() as Ref<InputInstance>;
@@ -90,6 +99,7 @@ const states = reactive<SelectState>({
   inputValue: initialOption ? initialOption.label : "",
   selectedOption: initialOption,
   mouseHover: false,
+  loading: false,
 });
 const popperOptions: any = {
   modifiers: [
@@ -110,34 +120,44 @@ const popperOptions: any = {
     },
   ],
 };
-const filteredOptions = ref(props.options);
+const filteredOptions = ref(props.options || []);
 watch(
   () => props.options,
   (newVal) => {
     filteredOptions.value = newVal;
   }
 );
-const generateFilteredOptions = (searchValue: string) => {
+const generateFilteredOptions = async (searchValue: string) => {
   if (!props.filterable) return;
   if (props.filterMethod && isFunction(props.filterMethod)) {
     filteredOptions.value = props.filterMethod(searchValue);
+  } else if (props.remote && props.remoteMethod && isFunction(props.remoteMethod)) {
+    states.loading = true;
+    try {
+      filteredOptions.value = await props.remoteMethod(searchValue);
+    } catch (err) {
+      console.error(err);
+      filteredOptions.value = [];
+    } finally {
+      states.loading = false;
+    }
   } else {
     filteredOptions.value = props.options.filter((option) => {
       return option.label.includes(searchValue);
     });
-    console.log(filteredOptions.value,searchValue);
   }
 };
 const onFilter = () => {
   generateFilteredOptions(states.inputValue);
 };
+const debounceFilter = debounce(onFilter, timeout.value);
 const controlDropdown = (show: boolean) => {
   if (show) {
     if (props.filterable && states.selectedOption) {
       states.inputValue = "";
     }
     // 进行一次默认选项的生成
-    if(props.filterable){
+    if (props.filterable) {
       generateFilteredOptions(states.inputValue);
     }
     tooltipRef.value?.show();

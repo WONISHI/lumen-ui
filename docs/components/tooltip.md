@@ -1,5 +1,5 @@
 ---
-title: Tooltip | lumen-ui
+title: Tooltip
 description: Tooltip 组件的文档
 ---
 
