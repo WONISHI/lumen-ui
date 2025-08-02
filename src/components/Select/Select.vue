@@ -152,6 +152,7 @@ const generateFilteredOptions = async (searchValue: string) => {
       return option.label.includes(searchValue);
     });
   }
+  states.highlightIndex = -1;
 };
 const onFilter = () => {
   generateFilteredOptions(states.inputValue);
@@ -173,6 +174,7 @@ const controlDropdown = (show: boolean) => {
     if (props.filterable) {
       states.inputValue = states.selectedOption ? states.selectedOption.label : "";
     }
+    states.highlightIndex = -1;
   }
   isDropdownShow.value = show;
   emits("visible-change", show);
@@ -195,8 +197,8 @@ const handleKeydown = (e: KeyboardEvent) => {
         controlDropdown(false);
       }
       break;
-    case "ArrowUp":
-      e.preventDefault();
+    case "ArrowUp": //向上
+      e.preventDefault(); //禁止页面滚动
       // states.highlightIndex = -1
       if (filteredOptions.value.length > 0) {
         if (states.highlightIndex === -1 || states.highlightIndex === 0) {
@@ -207,8 +209,8 @@ const handleKeydown = (e: KeyboardEvent) => {
         }
       }
       break;
-    case "ArrowDown":
-      e.preventDefault();
+    case "ArrowDown": //向下
+      e.preventDefault(); //禁止页面滚动
       // states.highlightIndex = -1
       if (filteredOptions.value.length > 0) {
         if (
