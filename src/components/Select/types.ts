@@ -23,7 +23,7 @@ export interface SelectState {
   selectedOption: SelectOption | null;
   mouseHover: boolean;
   loading: boolean;
-  highlightedIndex: number;
+  highlightIndex: number;
 }
 
 export type ReaderLabelFunc = (option: SelectOption) => VNode;

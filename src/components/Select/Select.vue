@@ -52,7 +52,7 @@
               :class="{
                 'is-diabled': disabled,
                 'is-selected': item.value === states.selectedOption?.value,
-                'is-highlighted': index === states.highlightedIndex,
+                'is-highlighted': index === states.highlightIndex,
               }"
               :id="`select-item-${item.value}`"
               @click.stop="itemSelect(item)"
@@ -102,7 +102,7 @@ const states = reactive<SelectState>({
   selectedOption: initialOption,
   mouseHover: false,
   loading: false,
-  highlightedIndex: -1,
+  highlightIndex: -1,
 });
 const popperOptions: any = {
   modifiers: [
@@ -163,6 +163,7 @@ const controlDropdown = (show: boolean) => {
     if (props.filterable) {
       generateFilteredOptions(states.inputValue);
     }
+    console.log(filteredOptions.value);
     tooltipRef.value?.show();
   } else {
     tooltipRef.value?.hide();
@@ -176,27 +177,50 @@ const controlDropdown = (show: boolean) => {
 };
 const handleKeydown = (e: KeyboardEvent) => {
   switch (e.key) {
-    case "Enter":
-      toggleDropdown();
-      break;
-    case "Escape":
+    case 'Enter':
       if (!isDropdownShow.value) {
-        controlDropdown(false);
-      }
-      break;
-    case "ArrowUp":
-      if (filteredOptions.value.length > 0) {
-        if (states.highlightedIndex === -1) {
-          states.highlightedIndex = filteredOptions.value.length - 1;
-        }else{
-          states.highlightedIndex--
+        controlDropdown(true)
+      } else {
+        if (states.highlightIndex > -1 && filteredOptions.value[states.highlightIndex]) {
+          itemSelect(filteredOptions.value[states.highlightIndex])
+        } else {
+          controlDropdown(false)
         }
       }
-      break;
+      break
+    case 'Escape':
+      if (isDropdownShow.value) {
+        controlDropdown(false)
+      }
+      break
+    case 'ArrowUp':
+      e.preventDefault()
+      // states.highlightIndex = -1
+      if (filteredOptions.value.length > 0) {
+        if (states.highlightIndex === -1 || states.highlightIndex === 0) {
+          states.highlightIndex = filteredOptions.value.length - 1
+        } else {
+          // move up
+          states.highlightIndex--
+        }
+      }
+      break
+    case 'ArrowDown':
+      e.preventDefault()
+      // states.highlightIndex = -1
+      if (filteredOptions.value.length > 0) {
+        if (states.highlightIndex === -1 || states.highlightIndex === (filteredOptions.value.length - 1)) {
+          states.highlightIndex = 0
+        } else {
+          // move up
+          states.highlightIndex++
+        }
+      }
+      break
     default:
       break;
   }
-};
+}
 const showClearIcon = computed(() => {
   //hover上去
   // props.clearable为true
