@@ -94,7 +94,7 @@ const emits = defineEmits<SelectEmits>();
 const tooltipRef = ref() as Ref<TooltipInstance>;
 const inputRef = ref() as Ref<InputInstance>;
 const isDropdownShow = ref(false);
-const initialOption = findOptions(props.modelValue);
+let initialOption: any = findOptions(props.modelValue);
 const filteredPlaceholder = computed(() => {
   return props.filterable && states.selectedOption && isDropdownShow.value
     ? states.selectedOption.label
@@ -131,6 +131,12 @@ watch(
   () => props.options,
   (newVal) => {
     filteredOptions.value = newVal;
+  }
+);
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    initialOption = newValue;
   }
 );
 const generateFilteredOptions = async (searchValue: string) => {
