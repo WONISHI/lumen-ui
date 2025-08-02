@@ -3,7 +3,7 @@
   --vp-c-brand-light: var(--lu-color-primary-light-3);
   --vp-c-brand-lighter: var(--lu-color-primary-light-5);
   --vp-c-brand-dark: var(--lu-color-primary-dark-2);
-  --vp-c-brand-darker: #265F99;
+  --vp-c-brand-darker: #265f99;
 
   --component-preview-bg: var(--vp-code-block-bg);
   --component-preview-soft: var(--vp-code-block-bg-light);
@@ -12,6 +12,19 @@
 body {
   color: var(--vp-c-text-1);
 }
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   color: var(--vp-c-text-1);
+}
+
+.vp-doc .vitepress-demo-preview-preview ul,
+.vp-doc .vitepress-demo-preview-preview ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

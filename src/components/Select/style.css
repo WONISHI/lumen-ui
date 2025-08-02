@@ -63,6 +63,9 @@
       color: var(--lu-select-item-selected-font-color);
       font-weight: 700;
     }
+    &.is-highlighted {
+      background-color: var(--lu-select-item-hover-bg-color);
+    }
     &.is-disabled {
       color: var(--lu-select-item-disabled-font-color);
       cursor: not-allowed;

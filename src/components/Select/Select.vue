@@ -52,6 +52,7 @@
               :class="{
                 'is-diabled': disabled,
                 'is-selected': item.value === states.selectedOption?.value,
+                'is-highlighted': index === states.highlightedIndex,
               }"
               :id="`select-item-${item.value}`"
               @click.stop="itemSelect(item)"
@@ -101,6 +102,7 @@ const states = reactive<SelectState>({
   selectedOption: initialOption,
   mouseHover: false,
   loading: false,
+  highlightedIndex: -1,
 });
 const popperOptions: any = {
   modifiers: [
@@ -180,6 +182,15 @@ const handleKeydown = (e: KeyboardEvent) => {
     case "Escape":
       if (!isDropdownShow.value) {
         controlDropdown(false);
+      }
+      break;
+    case "ArrowUp":
+      if (filteredOptions.value.length > 0) {
+        if (states.highlightedIndex === -1) {
+          states.highlightedIndex = filteredOptions.value.length - 1;
+        }else{
+          states.highlightedIndex--
+        }
       }
       break;
     default:
