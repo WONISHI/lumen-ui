@@ -90,8 +90,8 @@ import Icon from "../Icon/Icon.vue";
 import type { Ref } from "vue";
 import { formItemContextKey } from "../Form/types";
 const formItemContext = inject(formItemContextKey);
-const runValidation = () => {
-  formItemContext?.validate()
+const runValidation = (trigger?: string) => {
+  formItemContext?.validate(trigger);
 };
 defineOptions({
   name: "LuInput",
@@ -121,10 +121,11 @@ const keepFocus = async () => {
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
-  runValidation();
+  runValidation('input');
 };
 const handleChange = () => {
   emits("change", innerValue.value);
+  runValidation('change');
 };
 const handleFocus = (event: FocusEvent) => {
   isFocus.value = true;
@@ -133,6 +134,7 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   isFocus.value = false;
   emits("blur", event);
+  runValidation('blur');
 };
 const togglePasswordVisible = () => {
   passwordVisible.value = !passwordVisible.value;

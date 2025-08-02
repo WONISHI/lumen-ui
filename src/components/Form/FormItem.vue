@@ -16,7 +16,6 @@
         {{ validateStatus.errorMsg }}
       </div>
     </div>
-    <div @click.prevent="validate">验证</div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -54,11 +53,25 @@ const itemRules = computed(() => {
   }
 });
 
-const validate = async () => {
+const getTriggeredRules = (trigger?: string) => {
+  const rules = itemRules.value;
+  if (rules) {
+    return rules.filter((rule) => {
+      if (!rule.trigger && !trigger) return true;
+      return rule.trigger && rule.trigger === trigger;
+    });
+  } else {
+    return [];
+  }
+};
+
+const validate = async (trigger?: string) => {
   const modelName = props.prop;
+  const triggeredRules = getTriggeredRules(trigger);
+  if (triggeredRules.length === 0) return true;
   if (modelName) {
     const validator = new Schema({
-      [modelName]: itemRules.value,
+      [modelName]: triggeredRules,
     });
     validateStatus.loading = true;
     validator
