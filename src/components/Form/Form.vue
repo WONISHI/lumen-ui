@@ -5,7 +5,13 @@
 </template>
 <script setup lang="ts">
 import { provide } from "vue";
-import type { FormProps, FormItemContext, FormContext, FormValidateFailure,FormInstance } from "./types";
+import type {
+  FormProps,
+  FormItemContext,
+  FormContext,
+  FormValidateFailure,
+  FormInstance,
+} from "./types";
 import type { ValidateFieldsError } from "async-validator";
 import { formContextKey } from "./types";
 const props = defineProps<FormProps>();
@@ -25,13 +31,13 @@ const validate = async () => {
   let validationErrors: ValidateFieldsError = {};
   for (const field of fields) {
     try {
-      await field.validate('');
+      await field.validate("");
     } catch (e) {
       const error = e as FormValidateFailure;
       validationErrors = { ...validationErrors, ...error.fields };
     }
   }
-  if (Object.keys(validationErrors).length) return true;
+  if (Object.keys(validationErrors).length===0) return true;
   return Promise.reject(validationErrors);
 };
 provide(formContextKey, {
@@ -42,5 +48,5 @@ provide(formContextKey, {
 
 defineExpose<FormInstance>({
   validate,
-})
+});
 </script>
