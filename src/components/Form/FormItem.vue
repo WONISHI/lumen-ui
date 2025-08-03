@@ -24,7 +24,13 @@ import { inject, computed, reactive, provide, onMounted, onUnmounted } from "vue
 import { isNil } from "lodash-es";
 import Schema from "async-validator";
 import { formContextKey, formItemContextKey } from "./types";
-import type { FormItemProps, FormValidateFailure, FormItemContext } from "./types";
+import type {
+  FormItemProps,
+  FormValidateFailure,
+  FormItemContext,
+  ValidateStatusProp,
+  FormItemInstance,
+} from "./types";
 
 defineOptions({
   name: "LuFormItem",
@@ -32,7 +38,7 @@ defineOptions({
 const props = defineProps<FormItemProps>();
 
 const formContext = inject(formContextKey);
-const validateStatus = reactive({
+const validateStatus: ValidateStatusProp = reactive({
   state: "init",
   errorMsg: "",
   loading: false,
@@ -129,5 +135,12 @@ onMounted(() => {
 onUnmounted(() => {
   formContext?.removeField(context);
   initialValue = innerValue.value;
+});
+
+defineExpose<FormItemInstance>({
+  validateStatus,
+  validate,
+  clearValidate,
+  resetField,
 });
 </script>
