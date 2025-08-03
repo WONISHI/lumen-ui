@@ -79,13 +79,12 @@ const validate = async (trigger?: string) => {
       .validate({ [modelName]: innerValue.value })
       .then(() => {
         validateStatus.state = "success";
-        console.log("no error");
       })
       .catch((e: FormValidateFailure) => {
         const { errors } = e;
         validateStatus.state = "error";
         validateStatus.errorMsg = errors && errors.length ? errors[0].message || "" : "";
-        console.log(e.errors);
+        console.warn(e.errors);
         return Promise.reject(e);
       })
       .finally(() => {
