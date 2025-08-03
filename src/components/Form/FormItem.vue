@@ -19,11 +19,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { inject, computed, reactive, provide, onMounted,onUnmounted } from "vue";
+import { inject, computed, reactive, provide, onMounted, onUnmounted } from "vue";
 import { isNil } from "lodash-es";
 import Schema from "async-validator";
 import { formContextKey, formItemContextKey } from "./types";
-import type { FormItemProps, FormValidateFailure, FormItemContext } from "./types";
+import type { FormItemProps, FormValidateFailure, FormItemContext} from "./types";
+
 defineOptions({
   name: "LuFormItem",
 });
@@ -35,7 +36,7 @@ const validateStatus = reactive({
   errorMsg: "",
   loading: false,
 });
-
+let initialValue: any = null;
 const innerValue = computed(() => {
   const model = formContext?.model;
   if (model && props.prop && !isNil(model[props.prop])) {
@@ -92,10 +93,28 @@ const validate = async (trigger?: string) => {
       });
   }
 };
+
+const clearValidate = () => {
+  validateStatus.state = "init";
+  validateStatus.errorMsg = "";
+  validateStatus.loading = false;
+};
+
+const resetField = () => {
+  clearValidate();
+  const model = formContext?.rules;
+  if (model && props.prop && !isNil(model[props.prop])) {
+    model[props.prop] = initialValue;
+  }
+};
+
 const context: FormItemContext = {
   validate,
   prop: props.prop || "",
+  clearValidate,
+  resetField,
 };
+
 provide(formItemContextKey, context);
 
 onMounted(() => {
@@ -103,7 +122,8 @@ onMounted(() => {
     formContext?.addField(context);
   }
 });
-onUnmounted(()=>{
-    formContext?.removeField(context)
-})
+onUnmounted(() => {
+  formContext?.removeField(context);
+  initialValue = innerValue.value;
+});
 </script>
