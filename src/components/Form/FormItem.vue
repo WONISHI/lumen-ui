@@ -57,7 +57,7 @@ const getTriggeredRules = (trigger?: string) => {
   const rules = itemRules.value;
   if (rules) {
     return rules.filter((rule) => {
-      if (!rule.trigger && !trigger) return true;
+      if (!rule.trigger || !trigger) return true;
       return rule.trigger && rule.trigger === trigger;
     });
   } else {
@@ -74,7 +74,7 @@ const validate = async (trigger?: string) => {
       [modelName]: triggeredRules,
     });
     validateStatus.loading = true;
-    validator
+    return validator
       .validate({ [modelName]: innerValue.value })
       .then(() => {
         validateStatus.state = "success";
@@ -85,6 +85,7 @@ const validate = async (trigger?: string) => {
         validateStatus.state = "error";
         validateStatus.errorMsg = errors && errors.length ? errors[0].message || "" : "";
         console.log(e.errors);
+        return Promise.reject(e);
       })
       .finally(() => {
         validateStatus.loading = false;

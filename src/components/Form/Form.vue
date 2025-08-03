@@ -23,9 +23,9 @@ const removeField: FormContext["removeField"] = (field: FormItemContext) => {
 };
 const validate = async () => {
   let validationErrors: ValidateFieldsError = {};
-  for (const fileld of fields) {
+  for (const field of fields) {
     try {
-      await fileld.validate();
+      await field.validate('');
     } catch (e) {
       const error = e as FormValidateFailure;
       validationErrors = { ...validationErrors, ...error.fields };
@@ -39,7 +39,8 @@ provide(formContextKey, {
   addField,
   removeField,
 });
-defineExpose({
+
+defineExpose<FormInstance>({
   validate,
 })
 </script>
