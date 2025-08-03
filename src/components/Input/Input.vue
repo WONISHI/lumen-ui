@@ -91,7 +91,7 @@ import type { Ref } from "vue";
 import { formItemContextKey } from "../Form/types";
 const formItemContext = inject(formItemContextKey);
 const runValidation = (trigger?: string) => {
-  formItemContext?.validate(trigger);
+  formItemContext?.validate(trigger).catch((e)=>console.log(e.errors));
 };
 defineOptions({
   name: "LuInput",

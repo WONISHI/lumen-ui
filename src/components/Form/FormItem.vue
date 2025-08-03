@@ -5,6 +5,7 @@
       'is-error': validateStatus.state === 'error',
       'is-success': validateStatus.state === 'success',
       'is-loading': validateStatus.loading,
+      'is-required': isRequired,
     }"
   >
     <label class="lu-form-item__label">
@@ -23,7 +24,7 @@ import { inject, computed, reactive, provide, onMounted, onUnmounted } from "vue
 import { isNil } from "lodash-es";
 import Schema from "async-validator";
 import { formContextKey, formItemContextKey } from "./types";
-import type { FormItemProps, FormValidateFailure, FormItemContext} from "./types";
+import type { FormItemProps, FormValidateFailure, FormItemContext } from "./types";
 
 defineOptions({
   name: "LuFormItem",
@@ -65,6 +66,10 @@ const getTriggeredRules = (trigger?: string) => {
     return [];
   }
 };
+
+const isRequired = computed(() => {
+  return itemRules.value.some((rule) => rule.required);
+});
 
 const validate = async (trigger?: string) => {
   const modelName = props.prop;

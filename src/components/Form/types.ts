@@ -28,7 +28,7 @@ export interface FormContext extends FormProps {
 
 export interface FormItemContext {
   prop: string;
-  validate: (trigger?: string) => any;
+  validate: (trigger?: string) => Promise<any>;
   resetField: () => void;
   clearValidate: () => void;
 }
