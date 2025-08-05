@@ -34,7 +34,7 @@ const components = [
 
 const install = (app: App) => {
   components.forEach(compoment => {
-    app.component(compoment.name, compoment)
+    app.component(compoment.name!, compoment)
   })
 }
 

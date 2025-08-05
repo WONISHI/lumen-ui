@@ -34,7 +34,8 @@ onMounted(async () => {
 <template>
   <div>
     <aside>
-      <h3>Button{{ $echo("viking") }}</h3>
+      <!--  -->
+      <!-- <h3>Button{{ $echo("viking") }}</h3> -->
       <v-button type="primary">primary</v-button>
       <v-button type="success">success</v-button>
       <v-button type="warning">warning</v-button>

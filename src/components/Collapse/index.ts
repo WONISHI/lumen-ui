@@ -12,4 +12,6 @@ CollapseItem.install = (app: App) => {
 
 export default Collapse;
 
-export * from "./types"
+export { CollapseItem };
+
+export * from "./types";
