@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
@@ -10,7 +9,7 @@ import type { TooltipInstance } from "./components/Tooltip/types";
 import type { Options } from "@popperjs/core";
 import Icon from "./components/Icon/Icon.vue";
 import { createPopper } from "@popperjs/core";
-import { ref, onMounted, h } from "vue";
+import { ref, onMounted, h, getCurrentInstance, inject } from "vue";
 import VNode from "./components/VNode/VNode.tsx";
 const openedValue = ref<NameType[]>(["a"]);
 const overlayNode = ref<HTMLElement | null>(null);
@@ -26,34 +25,35 @@ onMounted(async () => {
       placement: "bottom",
     });
   }
+  console.log(getCurrentInstance(),inject("test"));
   createMessage({ message: "hello word", duration: 80000, showClose: true, type: "info" });
-  createMessage({ message: "hello world again", duration: 4000, showClose: true,type:'danger' });
+  createMessage({ message: "hello world again", duration: 4000, showClose: true, type: "danger" });
 });
 </script>
 
 <template>
   <div>
     <aside>
-      <h3>Button</h3>
-      <Button type="primary">primary</Button>
-      <Button type="success">success</Button>
-      <Button type="warning">warning</Button>
-      <Button type="info">info</Button>
-      <Button type="danger">danger</Button>
+      <h3>Button{{ $echo("viking") }}</h3>
+      <v-button type="primary">primary</v-button>
+      <v-button type="success">success</v-button>
+      <v-button type="warning">warning</v-button>
+      <v-button type="info">info</v-button>
+      <v-button type="danger">danger</v-button>
       <br />
       <p />
-      <Button plain>plain</Button>
-      <Button circle>circle</Button>
-      <Button round>round</Button>
-      <Button disabled>disabled</Button>
+      <v-button plain>plain</v-button>
+      <v-button circle>circle</v-button>
+      <v-button round>round</v-button>
+      <v-button disabled>disabled</v-button>
       <br />
       <p />
-      <Button size="large">large</Button>
-      <Button size="small">small</Button>
+      <v-button size="large">large</v-button>
+      <v-button size="small">small</v-button>
       <br />
       <p />
-      <Button size="large" loading>loading</Button>
-      <Button size="large" icon="arrow-up">arrow-up</Button>
+      <v-button size="large" loading>loading</v-button>
+      <v-button size="large" icon="arrow-up">arrow-up</v-button>
     </aside>
     <aside>
       <h3>Collapse</h3>

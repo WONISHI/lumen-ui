@@ -31,6 +31,9 @@ import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
 import { getLastBottomOffset } from "./methods";
 import useEventListener from "@/hooks/useEventListener";
+defineOptions({
+  name: "LuMessage",
+})
 const props = withDefaults(defineProps<MessageProps>(), {
   type: "info",
   duration: 3000,
