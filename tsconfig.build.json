@@ -1,0 +1,26 @@
+{
+  "files": [],
+  "include": ["src/index.ts", "src/components/**/*","src/hooks/**/*"],
+  "compilerOptions": {
+    "types": ["unplugin-vue-macros-global"],
+    "typeRoots": ["./types", "./node_modules/@types"]
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-model",
+      "@vue-macros/volar/define-props",
+      "@vue-macros/volar/define-props-refs",
+      "@vue-macros/volar/short-vmodel",
+      "@vue-macros/volar/define-slots",
+      "@vue-macros/volar/define-props"
+    ]
+  },
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}

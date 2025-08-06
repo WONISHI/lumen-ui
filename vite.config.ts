@@ -9,6 +9,7 @@ import eslint from "vite-plugin-eslint";
 import VueMacros from "unplugin-vue-macros";
 import { visualizer } from "rollup-plugin-visualizer";
 import { resolve } from "path";
+import dts from "vite-plugin-dts";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -29,6 +30,9 @@ export default defineConfig({
       gzipSize: true, // 显示gzip后的大小
       brotliSize: true, // 显示brotli压缩后的大小
     }),
+    dts({
+      tsconfigPath:'tsconfig.build.json'
+    })
   ],
   resolve: {
     alias: {
