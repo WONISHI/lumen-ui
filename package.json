@@ -6,13 +6,16 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/lumen-ui.umd.cjs",
-  "module": "./dist/lumen-ui.js",
+  "main": "./dist/umd/lumen-ui.umd.cjs",
+  "module": "./dist/es/lumen-ui.js",
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-p build-es build-umd",
     "preview": "vite preview",
     "build-only": "vite build",
+    "build-umd": "vite build --config vite.umd.config.ts",
+    "build-es":"vite build --config vite.es.config.ts",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "docs:dev": "vitepress dev docs",
