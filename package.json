@@ -24,9 +24,9 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/lumen-ui.js",
-      "require": "./dist/lumen-ui.umd.cjs"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/es/lumen-ui.js",
+      "require": "./dist/umd/lumen-ui.umd.cjs"
     }
   },
   "dependencies": {
