@@ -31,8 +31,8 @@ export default defineConfig({
       brotliSize: true, // 显示brotli压缩后的大小
     }),
     dts({
-      tsconfigPath:'tsconfig.build.json'
-    })
+      tsconfigPath: "tsconfig.build.json",
+    }),
   ],
   resolve: {
     alias: {
@@ -51,6 +51,12 @@ export default defineConfig({
         exports: "named",
         globals: {
           vue: "Vue",
+        },
+        assetFileNames: (chunkInfo) => {
+          if (chunkInfo.name === "style.css") {
+            return `index.css`;
+          }
+          return chunkInfo.name as string;
         },
       },
     },
