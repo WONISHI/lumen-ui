@@ -1,4 +1,5 @@
 // import { globalIgnores } from 'eslint/config'
+// @ts-expect-error
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
 

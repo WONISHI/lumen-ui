@@ -5,7 +5,6 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import vueDevTools from "vite-plugin-vue-devtools";
 import VueMacros from "unplugin-vue-macros";
-import { visualizer } from "rollup-plugin-visualizer";
 import { resolve } from "path";
 
 // https://vite.dev/config/
@@ -18,13 +17,7 @@ export default defineConfig({
         vueJsx: vueJsx(),
       },
     }),
-    vueDevTools(),
-    visualizer({
-      open: true, // 直接在浏览器中打开分析报告
-      filename: "stats.html", // 输出文件的名称
-      gzipSize: true, // 显示gzip后的大小
-      brotliSize: true, // 显示brotli压缩后的大小
-    }),
+    vueDevTools()
   ],
   resolve: {
     alias: {

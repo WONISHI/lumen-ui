@@ -5,7 +5,7 @@ export interface IconProps {
   flip?: "horizontal" | "vertical" | "both";
   icon: object | Array<string> | string | IconDefinition;
   mask?: object | Array<string> | string;
-  maskId?: object | Array<string> | string;
+  maskId?: string;
   listItem?: boolean;
   pull?: "right" | "left";
   pulse?: boolean;
@@ -43,4 +43,22 @@ export interface IconProps {
   spinReverse?: boolean;
   type?: "primary" | "success" | "warning" | "danger" | "info";
   color?: string;
+}
+
+export interface FontAwesomeIconProps {
+  border?: boolean;
+  fixedWidth?: boolean;
+  flip?: "horizontal" | "vertical" | "both";
+  icon: string | object | string[] | IconDefinition;
+  mask?: string | object | string[];
+  maskId?: string;
+  pull?: "left" | "right";
+  pulse?: boolean;
+  rotation?: 90 | 180 | 270;
+  size?: string;
+  spin?: boolean;
+  spinReverse?: boolean;
+  transform?: string | object;
+  swapOpacity?: boolean;
+  title?: string;
 }
