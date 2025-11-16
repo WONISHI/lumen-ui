@@ -1,6 +1,6 @@
 import { defineComponent, computed, Fragment, ref } from "vue";
 import type { PropType } from "vue";
-import { type Placement, type Options } from "@popperjs/core";
+import type { Placement, Options } from "@popperjs/core";
 import type { MenuOptions } from "./types";
 import type { TooltipInstance } from "../Tooltip/types";
 import Tooltip from "../Tooltip/Tooltip.vue";

@@ -3,7 +3,6 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import vueDevTools from "vite-plugin-vue-devtools";
 import VueMacros from "unplugin-vue-macros";
 import { visualizer } from "rollup-plugin-visualizer";
 import { resolve } from "path";
@@ -19,7 +18,6 @@ export default defineConfig({
         vueJsx: vueJsx(),
       },
     }),
-    vueDevTools(),
     visualizer({
       open: true, // 直接在浏览器中打开分析报告
       filename: "stats.html", // 输出文件的名称

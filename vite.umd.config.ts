@@ -1,52 +1,48 @@
-import { fileURLToPath, URL } from "node:url";
+import { fileURLToPath, URL } from 'node:url'
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import VueMacros from 'unplugin-vue-macros'
 
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import vueJsx from "@vitejs/plugin-vue-jsx";
-import vueDevTools from "vite-plugin-vue-devtools";
-import VueMacros from "unplugin-vue-macros";
-import { resolve } from "path";
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    // @ts-ignore
     VueMacros.vite({
       plugins: {
         vue: vue(),
         vueJsx: vueJsx(),
       },
     }),
-    vueDevTools()
   ],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
   },
-  // umd打包的体积包括了svg提交会更大
   build: {
-    outDir: "dist/umd",
+    outDir: 'dist/umd',
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "lumenUI",
-      fileName: "lumen-ui",
-      formats: ["umd"],
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'lumenUI',
+      fileName: 'lumen-ui',
+      formats: ['umd']
     },
     rollupOptions: {
-      external: ["vue"],
+      external: ['vue'],
       output: {
-        exports: "named",
+        exports: 'named',
         globals: {
-          vue: "Vue",
+          vue: 'Vue'
         },
         assetFileNames: (chunkInfo) => {
-          if (chunkInfo.name === "style.css") {
-            return `index.css`;
+          if (chunkInfo.name === 'style.css') {
+            return 'index.css'
           }
-          return chunkInfo.name as string;
-        },
-      },
-    },
-  },
-});
+          return chunkInfo.name as string
+        }
+      }
+    }
+  }
+})

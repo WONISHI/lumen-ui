@@ -10,7 +10,7 @@
       "@vue-macros/volar/define-props-refs",
       "@vue-macros/volar/short-vmodel",
       "@vue-macros/volar/define-slots",
-      "@vue-macros/volar/define-props",
+      "@vue-macros/volar/define-props"
     ]
   },
   "references": [
@@ -20,5 +20,11 @@
     {
       "path": "./tsconfig.app.json"
     }
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "vitest.config.ts"
   ]
 }

@@ -8,7 +8,7 @@ describe("Input", () => {
       props: {
         size: "small",
         type: "text",
-        modelValue: "",
+        modelValue: "test",
       },
       slots: {
         prepend: "prepend",
