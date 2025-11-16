@@ -1,74 +1,44 @@
 {
   "name": "lumen-ui",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/umd/lumen-ui.umd.cjs",
-  "module": "./dist/es/lumen-ui.js",
-  "types": "./dist/types/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "run-p build-es build-umd",
+    "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
-    "build-umd": "vite build --config vite.umd.config.ts",
-    "build-es":"vite build --config vite.es.config.ts",
     "type-check": "vue-tsc --build",
-    "lint": "eslint . --fix",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/es/lumen-ui.js",
-      "require": "./dist/umd/lumen-ui.umd.cjs"
-    }
+    "lint": "eslint . --fix"
   },
   "dependencies": {
+    "vue": "^3.5.17",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/vue-fontawesome": "^3.0.8",
-    "vue": "^3.5.17"
+    "@fortawesome/vue-fontawesome": "^3.0.8"
   },
   "devDependencies": {
-    "@popperjs/core": "^2.11.8",
     "@tsconfig/node22": "^22.0.2",
-    "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.15.32",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vitejs/plugin-vue-jsx": "^5.0.0",
-    "@vitepress-demo-preview/component": "^2.3.0",
-    "@vitepress-demo-preview/plugin": "^1.1.9",
     "@vue-macros/volar": "^3.0.0-beta.15",
     "@vue/eslint-config-typescript": "^11.0.0",
-    "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
-    "axios": "^1.10.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
     "jiti": "^2.4.2",
-    "jsdom": "^26.1.0",
-    "lodash-es": "^4.17.21",
     "npm-run-all2": "^8.0.4",
     "postcss-color-mix": "^1.1.0",
     "postcss-each": "^1.1.0",
     "postcss-each-variables": "^0.3.0",
     "postcss-for": "^2.1.1",
     "postcss-nested": "^6.0.1",
-    "rollup-plugin-visualizer": "^6.0.3",
-    "typescript": "^5.1.6",
+    "typescript": "^5.8.3",
     "unplugin-vue-macros": "^2.14.5",
     "vite": "^7.0.0",
-    "vite-plugin-dts": "^3.5.4",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-vue-devtools": "^7.7.7",
-    "vitepress": "^1.0.0-alpha.65",
-    "vitest": "^3.2.4",
     "vue-tsc": "^2.2.10"
   }
 }
