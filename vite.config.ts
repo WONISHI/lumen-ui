@@ -7,9 +7,7 @@ import vueDevTools from "vite-plugin-vue-devtools";
 // @ts-ignore
 import eslint from "vite-plugin-eslint";
 import VueMacros from "unplugin-vue-macros";
-import { visualizer } from "rollup-plugin-visualizer";
 import { resolve } from "path";
-import dts from "vite-plugin-dts";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -23,16 +21,7 @@ export default defineConfig({
     eslint({
       include: ["src/**/*.ts", "src/**/*.vue"],
     }),
-    vueDevTools(),
-    visualizer({
-      open: true, // 直接在浏览器中打开分析报告
-      filename: "stats.html", // 输出文件的名称
-      gzipSize: true, // 显示gzip后的大小
-      brotliSize: true, // 显示brotli压缩后的大小
-    }),
-    dts({
-      tsconfigPath: "tsconfig.build.json",
-    }),
+    vueDevTools()
   ],
   resolve: {
     alias: {
