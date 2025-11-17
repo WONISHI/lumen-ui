@@ -1,7 +1,10 @@
 {
-  "name": "lumen-ui",
+  "name": "wonishi-lumen-ui",
   "version": "1.0.0",
   "description": "Vue3 components library",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "author": "WONISHI",
   "license": "MIT",
