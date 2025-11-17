@@ -1,17 +1,39 @@
 import {
-  computed,
-  defineComponent,
-  h,
-  watch
-} from "./chunk-DDXJJ377.js";
-import {
   config$1,
   icon,
   parse$1,
   text
 } from "./chunk-3IJK52MP.js";
+import {
+  computed,
+  defineComponent,
+  h,
+  watch
+} from "./chunk-SFNBNC2X.js";
 
 // node_modules/@fortawesome/vue-fontawesome/index.es.js
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+function _arrayWithoutHoles(r) {
+  if (Array.isArray(r)) return _arrayLikeToArray(r);
+}
+function _defineProperty(e, r, t) {
+  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: true,
+    configurable: true,
+    writable: true
+  }) : e[r] = t, e;
+}
+function _iterableToArray(r) {
+  if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
+}
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
 function ownKeys(e, r) {
   var t = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
@@ -32,6 +54,27 @@ function _objectSpread2(e) {
     });
   }
   return e;
+}
+function _objectWithoutProperties(e, t) {
+  if (null == e) return {};
+  var o, r, i = _objectWithoutPropertiesLoose(e, t);
+  if (Object.getOwnPropertySymbols) {
+    var n = Object.getOwnPropertySymbols(e);
+    for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]);
+  }
+  return i;
+}
+function _objectWithoutPropertiesLoose(r, e) {
+  if (null == r) return {};
+  var t = {};
+  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
+    if (-1 !== e.indexOf(n)) continue;
+    t[n] = r[n];
+  }
+  return t;
+}
+function _toConsumableArray(r) {
+  return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
 }
 function _toPrimitive(t, r) {
   if ("object" != typeof t || !t) return t;
@@ -55,70 +98,35 @@ function _typeof(o) {
     return o2 && "function" == typeof Symbol && o2.constructor === Symbol && o2 !== Symbol.prototype ? "symbol" : typeof o2;
   }, _typeof(o);
 }
-function _defineProperty(obj, key, value) {
-  key = _toPropertyKey(key);
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
   }
-  return obj;
 }
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  for (var key in source) {
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
-      if (excluded.indexOf(key) >= 0) continue;
-      target[key] = source[key];
-    }
-  }
-  return target;
+function objectWithKey(key, value) {
+  return Array.isArray(value) && value.length > 0 || !Array.isArray(value) && value ? _defineProperty({}, key, value) : {};
 }
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-  var target = _objectWithoutPropertiesLoose(source, excluded);
-  var key, i;
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-  return target;
-}
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-}
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-}
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-}
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-  return arr2;
-}
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+function classList(props) {
+  var _classes;
+  var classes = (_classes = {
+    "fa-spin": props.spin,
+    "fa-pulse": props.pulse,
+    // the fixedWidth property has been deprecated as of version 7.0.0
+    "fa-fw": props.fixedWidth,
+    "fa-border": props.border,
+    "fa-li": props.listItem,
+    "fa-inverse": props.inverse,
+    "fa-flip": props.flip === true,
+    "fa-flip-horizontal": props.flip === "horizontal" || props.flip === "both",
+    "fa-flip-vertical": props.flip === "vertical" || props.flip === "both"
+  }, _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_classes, "fa-".concat(props.size), props.size !== null), "fa-rotate-".concat(props.rotation), props.rotation !== null), "fa-rotate-by", props.rotateBy), "fa-pull-".concat(props.pull), props.pull !== null), "fa-swap-opacity", props.swapOpacity), "fa-bounce", props.bounce), "fa-shake", props.shake), "fa-beat", props.beat), "fa-fade", props.fade), "fa-beat-fade", props.beatFade), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_classes, "fa-flash", props.flash), "fa-spin-pulse", props.spinPulse), "fa-spin-reverse", props.spinReverse), "fa-width-auto", props.widthAuto));
+  return Object.keys(classes).map(function(key) {
+    return classes[key] ? key : null;
+  }).filter(function(key) {
+    return key;
+  });
 }
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 var humps$1 = { exports: {} };
@@ -289,28 +297,6 @@ function log() {
     (_console = console).error.apply(_console, arguments);
   }
 }
-function objectWithKey(key, value) {
-  return Array.isArray(value) && value.length > 0 || !Array.isArray(value) && value ? _defineProperty({}, key, value) : {};
-}
-function classList(props) {
-  var _classes;
-  var classes = (_classes = {
-    "fa-spin": props.spin,
-    "fa-pulse": props.pulse,
-    "fa-fw": props.fixedWidth,
-    "fa-border": props.border,
-    "fa-li": props.listItem,
-    "fa-inverse": props.inverse,
-    "fa-flip": props.flip === true,
-    "fa-flip-horizontal": props.flip === "horizontal" || props.flip === "both",
-    "fa-flip-vertical": props.flip === "vertical" || props.flip === "both"
-  }, _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_classes, "fa-".concat(props.size), props.size !== null), "fa-rotate-".concat(props.rotation), props.rotation !== null), "fa-pull-".concat(props.pull), props.pull !== null), "fa-swap-opacity", props.swapOpacity), "fa-bounce", props.bounce), "fa-shake", props.shake), "fa-beat", props.beat), "fa-fade", props.fade), "fa-beat-fade", props.beatFade), "fa-flash", props.flash), _defineProperty(_defineProperty(_classes, "fa-spin-pulse", props.spinPulse), "fa-spin-reverse", props.spinReverse));
-  return Object.keys(classes).map(function(key) {
-    return classes[key] ? key : null;
-  }).filter(function(key) {
-    return key;
-  });
-}
 function normalizeIconArgs(icon2) {
   if (icon2 && _typeof(icon2) === "object" && icon2.prefix && icon2.iconName && icon2.icon) {
     return icon2;
@@ -344,6 +330,7 @@ var FontAwesomeIcon = defineComponent({
       type: Boolean,
       default: false
     },
+    // the fixedWidth property has been deprecated as of version 7
     fixedWidth: {
       type: Boolean,
       default: false
@@ -388,6 +375,11 @@ var FontAwesomeIcon = defineComponent({
       validator: function validator3(value) {
         return [90, 180, 270].indexOf(Number.parseInt(value, 10)) > -1;
       }
+    },
+    // the rotateBy property is only supported in version 7.0.0 and later
+    rotateBy: {
+      type: Boolean,
+      default: false
     },
     swapOpacity: {
       type: Boolean,
@@ -455,6 +447,11 @@ var FontAwesomeIcon = defineComponent({
     spinReverse: {
       type: Boolean,
       default: false
+    },
+    // the widthAuto property is only supported in version 7.0.0 and later
+    widthAuto: {
+      type: Boolean,
+      default: false
     }
   },
   setup: function setup(props, _ref) {
@@ -472,12 +469,13 @@ var FontAwesomeIcon = defineComponent({
       return objectWithKey("mask", normalizeIconArgs(props.mask));
     });
     var renderedIcon = computed(function() {
-      return icon(icon$1.value, _objectSpread2(_objectSpread2(_objectSpread2(_objectSpread2({}, classes.value), transform.value), mask.value), {}, {
+      var iconProps = _objectSpread2(_objectSpread2(_objectSpread2(_objectSpread2({}, classes.value), transform.value), mask.value), {}, {
         symbol: props.symbol,
-        title: props.title,
-        titleId: props.titleId,
         maskId: props.maskId
-      }));
+      });
+      iconProps.title = props.title;
+      iconProps.titleId = props.titleId;
+      return icon(icon$1.value, iconProps);
     });
     watch(renderedIcon, function(value) {
       if (!value) {
