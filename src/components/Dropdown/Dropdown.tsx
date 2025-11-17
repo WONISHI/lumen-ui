@@ -4,6 +4,15 @@ import type { Placement, Options } from "@popperjs/core";
 import type { MenuOptions } from "./types";
 import type { TooltipInstance } from "../Tooltip/types";
 import Tooltip from "../Tooltip/Tooltip.vue";
+
+declare global {
+  namespace JSX {
+    interface Element {}
+    interface IntrinsicElements {
+      [elem: string]: any;
+    }
+  }
+}
 export default defineComponent({
   name: "LuDropdown",
   props: {

@@ -20,14 +20,14 @@
   "sideEffects": [
     "dist/index.css"
   ],
-  "main": "./dist/umd/lument-ui.umd.cjs",
-  "module": "./dist/es/lument-ui.js",
+  "main": "./dist/umd/lumen-ui.umd.cjs",
+  "module": "./dist/es/lumen-ui.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/es/lument-ui.js",
-      "require": "./dist/umd/lument-ui.umd.cjs",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/es/lumen-ui.js",
+      "require": "./dist/umd/lumen-ui.umd.cjs"
     },
     "./dist/": {
       "import": "./dist/",
